@@ -2,11 +2,11 @@ functions:
   actions:
     lang: golang-middleware
     handler: ./micros/actions
-    image: qolzam/actions:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/actions:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/action_config.yml
@@ -23,11 +23,11 @@ functions:
   admin:
     lang: golang-middleware
     handler: ./micros/admin
-    image: qolzam/admin:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/admin:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/admin_config.yml
@@ -44,11 +44,11 @@ functions:
   auth:
     lang: golang-middleware
     handler: ./micros/auth
-    image: qolzam/auth:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/auth:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/auth_config.yml
@@ -65,11 +65,11 @@ functions:
   notifications:
     lang: golang-middleware
     handler: ./micros/notifications
-    image: qolzam/notifications:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/notification_config.yml
@@ -86,11 +86,11 @@ functions:
   profile:
     lang: golang-middleware
     handler: ./micros/profile
-    image: qolzam/profile:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/profile:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/profile_config.yml
@@ -107,11 +107,11 @@ functions:
   setting:
     lang: golang-middleware
     handler: ./micros/setting
-    image: qolzam/setting:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/setting:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/setting_config.yml
@@ -128,10 +128,10 @@ functions:
   storage:
     lang: golang-middleware
     handler: ./micros/storage
-    image: qolzam/storage:v0.1.14
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/storage:v2.2.83
     fprocess: ""
     secrets:
-    - secrets
+    - telar-web-secrets
     environment_file:
     - config/app_config.yml
     - config/storage_config.yml
@@ -147,4 +147,4 @@ functions:
       linkerd.io/inject: disabled
 provider:
   name: openfaas
-  gateway: http://192.168.1.18:31112
+  gateway: https://openfaas.kube.monitalks.io

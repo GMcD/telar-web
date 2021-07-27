@@ -16,6 +16,7 @@ ENV CGO_ENABLED=0
 
 RUN mkdir -p /go/src/handler
 RUN mkdir -p /go/src/function
+
 WORKDIR /go/src/handler
 COPY docker/main/go.mod go.mod
 COPY docker/main/main.go main.go
@@ -58,7 +59,7 @@ FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine:3.13
 # Add non root user and certs
 RUN apk --no-cache add ca-certificates \
     && addgroup -S app && adduser -S -g app app
-# Split instructions so that buildkit can run & cache 
+# Split instructions so that buildkit can run & cache
 # the previous command ahead of time.
 RUN mkdir -p /home/app \
     && chown app /home/app

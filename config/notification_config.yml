@@ -1,7 +1,8 @@
 environment:
   base_route: "/notifications"
   write_debug: "true"
-  web_url: https://social.telar.dev
+  web_url: https://social.kube.monitalks.io
   exec_timeout: 20s
   read_timeout: 20s
   write_timeout: 20s
+ 

@@ -1,10 +1,10 @@
 environment:
   base_route: ""
-  external_redirect_domain: https://social.telar.dev
-  web_url: https://social.telar.dev
-  auth_web_uri: https://auth.telar.dev
-  client_id: 7a9cbbf3e0bce602784f
-  client_secret: ""
+  external_redirect_domain: https://social.kube.monitalks.io
+  web_url: https://social.kube.monitalks.io
+  auth_web_uri: https://auth.kube.monitalks.io
+  client_id: 530b7a1d34825f7c9941
+  client_secret: bc7d2c7e8372ed9b21d714cceb7f05f99d7962d9
   github_app_id: "12345"
   oauth_client_secret_path: /var/openfaas/secrets/ts-client-secret
   oauth_provider: github

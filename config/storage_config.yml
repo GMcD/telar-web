@@ -1,6 +1,6 @@
 environment:
   base_route: /storage
-  bucket_name: resume-web-app.appspot.com
+  bucket_name: storage-kube-monitalks-io
   exec_timeout: "180"
   write_timeout: "180"
   read_timeout: "180"
