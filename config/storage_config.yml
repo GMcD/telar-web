@@ -1,6 +1,6 @@
 environment:
   base_route: /storage
-  bucket_name: monisocial-20a8b.appspot.com
+  bucket_name: storage-kube-monitalks-io
   exec_timeout: "180"
   read_timeout: "180"
   storage_secret_path: /var/openfaas/secrets/serviceAccountKey.json

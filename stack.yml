@@ -65,7 +65,7 @@ functions:
   notifications:
     lang: golang-middleware
     handler: ./micros/notifications
-    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.84
+    image: 693422322547.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.83
     fprocess: ""
     environment: {}
     secrets:
@@ -148,4 +148,3 @@ functions:
 provider:
   name: openfaas
   gateway: https://openfaas.kube.monitalks.io
-
