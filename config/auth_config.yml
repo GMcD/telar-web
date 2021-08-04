@@ -1,0 +1,18 @@
+environment:
+  auth_web_uri: https://auth.monitalks.io
+  base_route: ""
+  client_id: 530b7a1d34825f7c9941
+  client_secret: ""
+  exec_timeout: 20s
+  external_redirect_domain: https://social.monitalks.io
+  github_app_id: "12345"
+  oauth_client_secret_path: /var/openfaas/secrets/ts-client-secret
+  oauth_provider: github
+  oauth_provider_base_url: ""
+  oauth_telar_base_url: ""
+  read_timeout: 20s
+  report_status: "true"
+  verify_type: emv
+  web_url: https://social.monitalks.io
+  write_debug: "true"
+  write_timeout: 20s
