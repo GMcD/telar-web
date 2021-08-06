@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+
+  actions:
+    image: ${REGISTRY}/actions:${TAG_NR}
+  admin:
+    image: ${REGISTRY}/admin:${TAG_NR}
+  auth:
+    image: ${REGISTRY}/auth:${TAG_NR}
+  notifications:
+    image: ${REGISTRY}/notifications:${TAG_NR}
+  profile:
+    image: ${REGISTRY}/profile:${TAG_NR}
+  setting:
+    image: ${REGISTRY}/setting:${TAG_NR}
+  storage:
+    image: ${REGISTRY}/storage:${TAG_NR}
