@@ -14,7 +14,7 @@ ARGUMENT  := $(word 1,${CMD_ARGS})
 ##
 ## Usage:
 ##  make [target] [ARGUMENT]
-##   operates in namespace ${NAMESPACE}
+##   operates in namespace ${ARGUMENT}
 ##
 
 help:		## Show this help.
