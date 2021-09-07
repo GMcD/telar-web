@@ -45,6 +45,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/password/reset/:verifyId", handlers.ResetPasswordFormHandler)
 	app.Get("/password/forget", handlers.ForgetPasswordPageHandler)
 	app.Post("/password/forget", handlers.ForgetPasswordFormHandler)
+	app.Put("/password/change", authCookieMiddleware, handlers.ChangePasswordHandler)
 
 	// Login
 	login.Get("/", handlers.LoginPageHandler)

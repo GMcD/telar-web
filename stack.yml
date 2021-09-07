@@ -147,4 +147,4 @@ functions:
       linkerd.io/inject: disabled
 provider:
   name: openfaas
-  gateway: https://openfaas.kube.monitalks.io
+  gateway: https://openfaas.prod.monitalks.io
