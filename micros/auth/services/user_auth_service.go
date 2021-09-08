@@ -3,13 +3,13 @@ package service
 import (
 	"fmt"
 
+	dto "github.com/GMcD/telar-web/micros/auth/dto"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/config"
 	repo "github.com/red-gold/telar-core/data"
 	"github.com/red-gold/telar-core/data/mongodb"
 	mongoRepo "github.com/red-gold/telar-core/data/mongodb"
 	"github.com/red-gold/telar-core/utils"
-	dto "github.com/red-gold/telar-web/micros/auth/dto"
 )
 
 // UserAuthService handlers with injected dependencies

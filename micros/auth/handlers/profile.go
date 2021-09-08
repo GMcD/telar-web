@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"net/http"
 
+	cf "github.com/GMcD/telar-web/micros/auth/config"
+	"github.com/GMcD/telar-web/micros/auth/models"
+	"github.com/GMcD/telar-web/micros/auth/provider"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/pkg/parser"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
-	cf "github.com/red-gold/telar-web/micros/auth/config"
-	"github.com/red-gold/telar-web/micros/auth/models"
-	"github.com/red-gold/telar-web/micros/auth/provider"
 )
 
 // UpdateProfileHandle a function invocation

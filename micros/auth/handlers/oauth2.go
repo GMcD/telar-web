@@ -9,17 +9,17 @@ import (
 	"strings"
 	"time"
 
+	cf "github.com/GMcD/telar-web/micros/auth/config"
+	"github.com/GMcD/telar-web/micros/auth/database"
+	dto "github.com/GMcD/telar-web/micros/auth/dto"
+	"github.com/GMcD/telar-web/micros/auth/models"
+	"github.com/GMcD/telar-web/micros/auth/provider"
+	service "github.com/GMcD/telar-web/micros/auth/services"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
 	"github.com/red-gold/telar-web/constants"
-	cf "github.com/red-gold/telar-web/micros/auth/config"
-	"github.com/red-gold/telar-web/micros/auth/database"
-	dto "github.com/red-gold/telar-web/micros/auth/dto"
-	"github.com/red-gold/telar-web/micros/auth/models"
-	"github.com/red-gold/telar-web/micros/auth/provider"
-	service "github.com/red-gold/telar-web/micros/auth/services"
 )
 
 const profileFetchTimeout = time.Second * 5

@@ -1,8 +1,8 @@
 package service
 
 import (
+	dto "github.com/GMcD/telar-web/micros/auth/dto"
 	uuid "github.com/gofrs/uuid"
-	dto "github.com/red-gold/telar-web/micros/auth/dto"
 )
 
 type UserAuthService interface {
