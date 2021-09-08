@@ -10,9 +10,9 @@ import (
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/middleware/authcookie"
 	"github.com/red-gold/telar-core/middleware/authhmac"
-	"github.com/red-gold/telar-web/micros/auth/handlers"
 
 	"github.com/GMcD/cognito-jwt/verify"
+	"github.com/GMcD/telar-web/micros/auth/handlers"
 )
 
 // SetupRoutes func
@@ -44,7 +44,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/signup2", handlers.Signup2Handle)
 
 	// Signin2
-	app.Post("/signin2", handlers.Signin2Handle)
+	// app.Post("/signin2", handlers.Signin2Handle)
 
 	// Password
 	app.Get("/password/reset/:verifyId", handlers.ResetPasswordPageHandler)
