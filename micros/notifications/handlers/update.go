@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/notifications/database"
+	domain "github.com/GMcD/telar-web/micros/notifications/dto"
+	models "github.com/GMcD/telar-web/micros/notifications/models"
+	service "github.com/GMcD/telar-web/micros/notifications/services"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/notifications/database"
-	domain "github.com/red-gold/telar-web/micros/notifications/dto"
-	models "github.com/red-gold/telar-web/micros/notifications/models"
-	service "github.com/red-gold/telar-web/micros/notifications/services"
 )
 
 // UpdateNotificationHandle handle update a notification

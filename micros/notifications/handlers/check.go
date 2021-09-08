@@ -7,14 +7,14 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/notifications/database"
+	"github.com/GMcD/telar-web/micros/notifications/dto"
+	service "github.com/GMcD/telar-web/micros/notifications/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/notifications/database"
-	"github.com/red-gold/telar-web/micros/notifications/dto"
-	service "github.com/red-gold/telar-web/micros/notifications/services"
 )
 
 // CheckNotifyEmailHandle handle query on notification

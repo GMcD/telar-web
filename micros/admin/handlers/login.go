@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
+	ac "github.com/GMcD/telar-web/micros/admin/config"
+	models "github.com/GMcD/telar-web/micros/auth/models"
 	"github.com/gofiber/fiber/v2"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	utils "github.com/red-gold/telar-core/utils"
-	ac "github.com/red-gold/telar-web/micros/admin/config"
-	models "github.com/red-gold/telar-web/micros/auth/models"
 )
 
 // Login page data template

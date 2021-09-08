@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 
+	dto "github.com/GMcD/telar-web/micros/setting/dto"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/data"
@@ -11,7 +12,6 @@ import (
 	"github.com/red-gold/telar-core/data/mongodb"
 	mongoRepo "github.com/red-gold/telar-core/data/mongodb"
 	"github.com/red-gold/telar-core/utils"
-	dto "github.com/red-gold/telar-web/micros/setting/dto"
 )
 
 // UserSettingService handlers with injected dependencies

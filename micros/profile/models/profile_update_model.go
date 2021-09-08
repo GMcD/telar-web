@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/red-gold/telar-web/constants"
+	"github.com/GMcD/telar-web/constants"
 )
 
 type ProfileUpdateModel struct {

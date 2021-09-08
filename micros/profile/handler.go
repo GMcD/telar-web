@@ -4,6 +4,9 @@ import (
 	"context"
 	"net/http"
 
+	micros "github.com/GMcD/telar-web/micros"
+	"github.com/GMcD/telar-web/micros/profile/database"
+	"github.com/GMcD/telar-web/micros/profile/router"
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -12,9 +15,6 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
-	micros "github.com/red-gold/telar-web/micros"
-	"github.com/red-gold/telar-web/micros/profile/database"
-	"github.com/red-gold/telar-web/micros/profile/router"
 )
 
 // Cache state

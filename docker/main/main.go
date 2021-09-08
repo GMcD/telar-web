@@ -12,7 +12,7 @@ import (
 	"syscall"
 	"time"
 
-	function "github.com/red-gold/telar-web/micros/__micro_name"
+	function "github.com/GMcD/telar-web/micros/__micro_name"
 )
 
 var (

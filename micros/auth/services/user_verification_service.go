@@ -3,15 +3,15 @@ package service
 import (
 	"fmt"
 
+	"github.com/GMcD/telar-web/constants"
+	authConfig "github.com/GMcD/telar-web/micros/auth/config"
+	dto "github.com/GMcD/telar-web/micros/auth/dto"
 	uuid "github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
 	repo "github.com/red-gold/telar-core/data"
 	"github.com/red-gold/telar-core/data/mongodb"
 	mongoRepo "github.com/red-gold/telar-core/data/mongodb"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/constants"
-	authConfig "github.com/red-gold/telar-web/micros/auth/config"
-	dto "github.com/red-gold/telar-web/micros/auth/dto"
 )
 
 // UserVerificationService handlers with injected dependencies

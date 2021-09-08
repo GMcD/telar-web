@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"time"
 
+	appConfig "github.com/GMcD/telar-web/micros/storage/config"
 	"github.com/go-redis/redis"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
-	appConfig "github.com/red-gold/telar-web/micros/storage/config"
 )
 
 var redisClient *redis.Client

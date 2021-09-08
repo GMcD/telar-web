@@ -3,13 +3,13 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/profile/database"
+	service "github.com/GMcD/telar-web/micros/profile/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/pkg/parser"
 	utils "github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/profile/database"
-	service "github.com/red-gold/telar-web/micros/profile/services"
 )
 
 type UserProfileQueryModel struct {

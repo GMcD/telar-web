@@ -1,9 +1,9 @@
 package service
 
 import (
+	dto "github.com/GMcD/telar-web/micros/actions/dto"
 	uuid "github.com/gofrs/uuid"
 	coreData "github.com/red-gold/telar-core/data"
-	dto "github.com/red-gold/telar-web/micros/actions/dto"
 )
 
 type ActionRoomService interface {

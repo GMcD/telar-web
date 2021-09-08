@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/setting/database"
+	domain "github.com/GMcD/telar-web/micros/setting/dto"
+	models "github.com/GMcD/telar-web/micros/setting/models"
+	service "github.com/GMcD/telar-web/micros/setting/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/setting/database"
-	domain "github.com/red-gold/telar-web/micros/setting/dto"
-	models "github.com/red-gold/telar-web/micros/setting/models"
-	service "github.com/red-gold/telar-web/micros/setting/services"
 )
 
 // CreateUserSettingHandle handle create a new userSetting

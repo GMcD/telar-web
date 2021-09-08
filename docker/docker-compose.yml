@@ -105,7 +105,7 @@ services:
         MICRONAME: auth
     # image:qolzam/auth:v2.1.0
     volumes:
-      - ../micros/auth:/usr/local/go/src/github.com/red-gold/telar-web/micros/auth
+      - ../micros/auth:/usr/local/go/src/github.com/GMcD/telar-web/micros/auth
       - $GOPATH/pkg/mod:/go/pkg/mod
     labels:
       # Enable public access

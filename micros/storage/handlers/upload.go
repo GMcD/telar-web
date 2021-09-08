@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 
 	firebase "firebase.google.com/go"
+	appConfig "github.com/GMcD/telar-web/micros/storage/config"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
-	appConfig "github.com/red-gold/telar-web/micros/storage/config"
 	"google.golang.org/api/option"
 
 	coreSetting "github.com/red-gold/telar-core/config"

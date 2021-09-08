@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
+	models "github.com/GMcD/telar-web/micros/setting/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
-	models "github.com/red-gold/telar-web/micros/setting/models"
 )
 
 // SetupPageHandler creates a handler for logging in

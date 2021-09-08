@@ -13,6 +13,9 @@ import (
 	"strings"
 	"time"
 
+	authConfig "github.com/GMcD/telar-web/micros/auth/config"
+	"github.com/GMcD/telar-web/micros/auth/models"
+	"github.com/GMcD/telar-web/micros/auth/provider"
 	"github.com/alexellis/hmac"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
@@ -21,9 +24,6 @@ import (
 	log "github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	authConfig "github.com/red-gold/telar-web/micros/auth/config"
-	"github.com/red-gold/telar-web/micros/auth/models"
-	"github.com/red-gold/telar-web/micros/auth/provider"
 )
 
 type UserInfoInReq struct {
