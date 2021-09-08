@@ -3,6 +3,7 @@ module github.com/red-gold/telar-web/micros/auth
 go 1.15
 
 require (
+	github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.3
