@@ -1,4 +1,4 @@
-module github.com/red-gold/telar-web
+module github.com/GMcD/telar-web
 
 go 1.15
 
