@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	models "github.com/GMcD/telar-web/micros/auth/models"
+	"github.com/GMcD/telar-web/micros/auth/models"
 	"github.com/gofiber/fiber/v2"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
