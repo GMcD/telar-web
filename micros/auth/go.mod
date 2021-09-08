@@ -1,4 +1,4 @@
-module github.com/red-gold/telar-web/micros/auth
+module github.com/GMcD/telar-web/micros/auth
 
 replace github.com/red-gold/telar-web v0.1.74 => github.com/GMcD/telar-web v0.1.76
 
