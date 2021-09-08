@@ -10,5 +10,5 @@ require (
 	github.com/gofiber/template v1.6.10
 	github.com/google/uuid v1.2.0 // indirect
 	github.com/red-gold/telar-core v0.1.16
-	github.com/GMcD/telar-web v0.1.81
+	github.com/GMcD/telar-web v0.1.82
 )
