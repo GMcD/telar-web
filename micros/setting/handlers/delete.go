@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/setting/database"
+	service "github.com/GMcD/telar-web/micros/setting/services"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/setting/database"
-	service "github.com/red-gold/telar-web/micros/setting/services"
 )
 
 // DeleteUserSettingHandle handle delete a userSetting

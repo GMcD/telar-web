@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"strings"
 
+	ac "github.com/GMcD/telar-web/micros/admin/config"
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/types"
-	ac "github.com/red-gold/telar-web/micros/admin/config"
 
 	utils "github.com/red-gold/telar-core/utils"
 )

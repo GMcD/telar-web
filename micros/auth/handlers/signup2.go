@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/constants"
 	ac "github.com/GMcD/telar-web/micros/auth/config"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	"github.com/GMcD/telar-web/micros/auth/dto"
@@ -15,7 +16,6 @@ import (
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/constants"
 )
 
 type User struct {

@@ -1,8 +1,8 @@
 package service
 
 import (
+	dto "github.com/GMcD/telar-web/micros/profile/dto"
 	uuid "github.com/gofrs/uuid"
-	dto "github.com/red-gold/telar-web/micros/profile/dto"
 )
 
 type UserProfileService interface {

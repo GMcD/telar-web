@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/GMcD/telar-web/constants"
 	cf "github.com/GMcD/telar-web/micros/auth/config"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	dto "github.com/GMcD/telar-web/micros/auth/dto"
@@ -19,7 +20,6 @@ import (
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/constants"
 )
 
 const profileFetchTimeout = time.Second * 5

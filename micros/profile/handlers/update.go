@@ -5,14 +5,14 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/GMcD/telar-web/micros/profile/database"
+	models "github.com/GMcD/telar-web/micros/profile/models"
+	service "github.com/GMcD/telar-web/micros/profile/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/profile/database"
-	models "github.com/red-gold/telar-web/micros/profile/models"
-	service "github.com/red-gold/telar-web/micros/profile/services"
 )
 
 // UpdateProfileHandle a function invocation

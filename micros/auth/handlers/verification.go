@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/constants"
 	authConfig "github.com/GMcD/telar-web/micros/auth/config"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	dto "github.com/GMcD/telar-web/micros/auth/dto"
@@ -15,7 +16,6 @@ import (
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/constants"
 )
 
 // Data for signup verify page template

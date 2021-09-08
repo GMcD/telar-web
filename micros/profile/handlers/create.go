@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/telar-web/micros/profile/database"
+	"github.com/GMcD/telar-web/micros/profile/dto"
+	service "github.com/GMcD/telar-web/micros/profile/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/pkg/log"
 	utils "github.com/red-gold/telar-core/utils"
-	"github.com/red-gold/telar-web/micros/profile/database"
-	"github.com/red-gold/telar-web/micros/profile/dto"
-	service "github.com/red-gold/telar-web/micros/profile/services"
 )
 
 // InitProfileIndexHandle handle create a new index

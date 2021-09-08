@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	models "github.com/GMcD/telar-web/micros/profile/models"
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
@@ -15,7 +16,6 @@ import (
 	"github.com/red-gold/telar-core/pkg/parser"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
-	models "github.com/red-gold/telar-web/micros/profile/models"
 )
 
 type Action struct {

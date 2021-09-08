@@ -9,14 +9,14 @@ import (
 	"net/http"
 	"strings"
 
+	notifyConfig "github.com/GMcD/telar-web/micros/notifications/config"
+	"github.com/GMcD/telar-web/micros/notifications/dto"
+	"github.com/GMcD/telar-web/micros/notifications/models"
 	"github.com/alexellis/hmac"
 	"github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/types"
 	"github.com/red-gold/telar-core/utils"
-	notifyConfig "github.com/red-gold/telar-web/micros/notifications/config"
-	"github.com/red-gold/telar-web/micros/notifications/dto"
-	"github.com/red-gold/telar-web/micros/notifications/models"
 )
 
 const (

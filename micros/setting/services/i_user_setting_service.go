@@ -1,9 +1,9 @@
 package service
 
 import (
+	dto "github.com/GMcD/telar-web/micros/setting/dto"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/data"
-	dto "github.com/red-gold/telar-web/micros/setting/dto"
 )
 
 type UserSettingService interface {

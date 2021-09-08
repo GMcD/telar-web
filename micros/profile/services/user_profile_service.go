@@ -3,13 +3,13 @@ package service
 import (
 	"fmt"
 
+	dto "github.com/GMcD/telar-web/micros/profile/dto"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/config"
 	coreData "github.com/red-gold/telar-core/data"
 	"github.com/red-gold/telar-core/data/mongodb"
 	mongoRepo "github.com/red-gold/telar-core/data/mongodb"
 	"github.com/red-gold/telar-core/utils"
-	dto "github.com/red-gold/telar-web/micros/profile/dto"
 )
 
 // UserProfileService handlers with injected dependencies
