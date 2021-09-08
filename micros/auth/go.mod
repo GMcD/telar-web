@@ -1,5 +1,7 @@
 module github.com/red-gold/telar-web/micros/auth
 
+replace github.com/red-gold/telar-web v0.1.74 => github.com/GMcD/telar-web v0.1.76
+
 go 1.15
 
 require (
