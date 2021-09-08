@@ -10,9 +10,9 @@ import (
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/middleware/authcookie"
 	"github.com/red-gold/telar-core/middleware/authhmac"
-	"github.com/red-gold/telar-web/micros/auth/handlers"
 
 	"github.com/GMcD/cognito-jwt/verify"
+	"github.com/GMcD/telar-web/micros/auth/handlers"
 )
 
 // SetupRoutes func
