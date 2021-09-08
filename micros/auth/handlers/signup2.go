@@ -50,14 +50,17 @@ func Signup2Handle(c *fiber.Ctx) error {
 	// check model isn't empty
 	if model.User.Fullname == "" {
 		log.Error("Signup2Handle: missing fullname")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingFullname", "Missing fullname"))
 	}
 
 	if model.User.Email == "" {
 		log.Error("Signup2Handle: missing email")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingEmail", "Missing email"))
 	}
 
 	if model.User.Password == "" {
 		log.Error("Signup2Handle: missing password")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing password"))
 	}
 
 	// Create service
