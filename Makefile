@@ -39,9 +39,19 @@ up: login
 
 version:	## Commit, push and tag new version
 version:
+	echo "On prod/main" && \
+	git add . && \
+	git commit -m ${ARGUMENT} && \
+	git push && \
+	echo "On fork/gmcd" && \
+	git checkout gmcd && \
+	git merge main && \
+	echo "Update Release Number to v0.1.85 ... " && \ 
+	echo "Update stack.yml to v2.2.94 ... " && \
 	git add . && \
 	git commit -m ${ARGUMENT} && \
 	git push fork HEAD:master && \
-	git tag v0.1.83 -am Version-Bump && \
+	git tag v0.1.85 -am Version-Bump && \
 	git push fork HEAD:master --tags
-
+	git checkout main
+	faas up --build-arg GO111MODULE=on
