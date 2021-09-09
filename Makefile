@@ -48,14 +48,14 @@ version:	## Commit, push and tag new version
 version:
 	echo "On prod/main" && \
 	echo "Edit code...."
-	echo "Update stack.yml to v2.2.94 ... " && \
+	echo "Update stack.yml to v2.2.95 ... " && \
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.85 in auth/micros/go.mod " && \ 
-	make commit ${ARGUMENT} && \
-	git tag v0.1.85 -am ${ARGUMENT} && \
+	echo "Update Release Number to v0.1.86 in auth/micros/go.mod " && \ 
+	make fork ${ARGUMENT} && \
+	git tag v0.1.86 -am ${ARGUMENT} && \
 	git push fork HEAD:master --tags && \
 	git checkout main && \
 	git merge gmcd && \
