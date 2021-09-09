@@ -36,7 +36,7 @@ func Signup2Handle(c *fiber.Ctx) error {
 		log.Error(errorMessage)
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userMarshal", "Can not parse body"))
 	}
-	log.Info(p)
+	log.Info(fmt.Sprintf("%+v\n", p))
 	log.Info(p.fullname)
 	log.Info(p.email)
 	log.Info(p.password)
