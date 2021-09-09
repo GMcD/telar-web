@@ -19,25 +19,28 @@ import (
 )
 
 type User struct {
-	fullname string `json:"fullname" xml:"fullname" form:"fullname"`
-	email    string `json:"email" xml:"email" form:"email"`
-	password string `json:"password" xml:"password" form:"password"`
+	fullname string `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
+	email    string `json:"email" xml:"email" form:"email" query:"email"`
+	password string `json:"password" xml:"password" form:"password" query:"password"`
 }
 
 func Signup2Handle(c *fiber.Ctx) error {
 	config := coreConfig.AppConfig
 	authConfig := &ac.AuthConfig
 
-	// take parameters from a URL
+	// take parameters from Request
 	p := new(User)
 
 	if err := c.BodyParser(p); err != nil {
-		return err
+		errorMessage := fmt.Sprintf("Unmarshal User Error %s", err.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userMarshal", "Can not parse body"))
 	}
+	log.Info(p)
 	log.Info(p.fullname)
 	log.Info(p.email)
 	log.Info(p.password)
-	// check parameters from URL
+	log.Info(c.FormValue("fullname"))
 
 	// pass params into usermodel
 	model := &models.SignupTokenModel{

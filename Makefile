@@ -36,3 +36,12 @@ up: login
 	# ./update-micros.sh telar-web
 	echo "Running FaaS up..."
 	faas up --build-arg GO111MODULE=on
+
+version:	## Commit, push and tag new version
+version:
+	git add . && \
+	git commit -m ${ARGUMENT} && \
+	git push fork HEAD:master && \
+	git tag v0.1.83 -am Version-Bump && \
+	git push fork HEAD:master --tags
+
