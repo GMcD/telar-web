@@ -30,17 +30,31 @@ func Signup2Handle(c *fiber.Ctx) error {
 
 	// take parameters from Request
 	p := new(User)
+	p.fullname = c.FormValue("fullname")
+	p.email = c.FormValue("email")
+	p.password = c.FormValue("password")
 
-	if err := c.BodyParser(p); err != nil {
-		errorMessage := fmt.Sprintf("Unmarshal User Error %s", err.Error())
-		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userMarshal", "Can not parse body"))
-	}
+	// if err := c.BodyParser(p); err != nil {
+	// 	errorMessage := fmt.Sprintf("Unmarshal User Error %s", err.Error())
+	// 	log.Error(errorMessage)
+	// 	return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userMarshal", "Can not parse body"))
+	// }
 	log.Info(fmt.Sprintf("%+v\n", p))
-	log.Info(p.fullname)
-	log.Info(p.email)
-	log.Info(p.password)
-	log.Info(c.FormValue("fullname"))
+
+	if p.fullname == "" {
+		log.Error("Signup2Handle: missing form value fullname")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingFullname", "Missing fullname"))
+	}
+
+	if p.email == "" {
+		log.Error("Signup2Handle: missing form value email")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingEmail", "Missing email"))
+	}
+
+	if p.password == "" {
+		log.Error("Signup2Handle: missing form value password")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing password"))
+	}
 
 	// pass params into usermodel
 	model := &models.SignupTokenModel{
@@ -52,24 +66,24 @@ func Signup2Handle(c *fiber.Ctx) error {
 	}
 	// check model isn't empty
 	if model.User.Fullname == "" {
-		log.Error("Signup2Handle: missing fullname")
+		log.Error("Signup2Handle: missing model fullname")
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingFullname", "Missing fullname"))
 	}
 
 	if model.User.Email == "" {
-		log.Error("Signup2Handle: missing email")
+		log.Error("Signup2Handle: missing model email")
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingEmail", "Missing email"))
 	}
 
 	if model.User.Password == "" {
-		log.Error("Signup2Handle: missing password")
+		log.Error("Signup2Handle: missing model password")
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing password"))
 	}
 
 	// Create service
 	userAuthService, serviceErr := service.NewUserAuthService(database.Db)
 	if serviceErr != nil {
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/recaptcha", serviceErr.Error()))
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/newUserAuthService", serviceErr.Error()))
 	}
 
 	// Check user exist
@@ -78,12 +92,12 @@ func Signup2Handle(c *fiber.Ctx) error {
 		errorMessage := fmt.Sprintf("Error while finding user by user name : %s",
 			findError.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findUserAuth", errorMessage))
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userAuthService", errorMessage))
 
 	}
 
 	if userAuth != nil {
-		err := utils.Error("userAlreadyExist", "User already exist - "+model.User.Email)
+		err := utils.Error("userAlreadyExists", "User already exists - "+model.User.Email)
 		return c.Status(http.StatusBadRequest).JSON(err)
 	}
 

@@ -20,8 +20,15 @@ ARGUMENT  := $(word 1,${CMD_ARGS})
 help:		## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-commit:		## Short hand for Commit
+commit:		## Short hand for Commit to Prod Remote
 	git add .; git commit -m ${ARGUMENT}; git push
+
+fork:		## Short hand for Commit to Fork Remote
+	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
+
+logs:		## Log Pod ${ARGUMENT} by prefix
+logs:
+	kubectl logs --namespace openfaas-fn $(shell kubectl get pods --namespace openfaas-fn -o=jsonpath='{.items[*].metadata.name}' -l faas_function=${ARGUMENT})
 
 login:  	## ECR Docker Login
 	@ aws ecr get-login-password --region $${AWS_REGION} | docker login --username AWS --password-stdin $${AWS_ACCOUNT_ID}.dkr.ecr.$${AWS_REGION}.amazonaws.com
@@ -40,18 +47,16 @@ up: login
 version:	## Commit, push and tag new version
 version:
 	echo "On prod/main" && \
-	git add . && \
-	git commit -m ${ARGUMENT} && \
-	git push && \
-	echo "On fork/gmcd" && \
+	echo "Edit code...."
+	echo "Update stack.yml to v2.2.94 ... " && \
+	make commit ${ARGUMENT} && \
+	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.85 ... " && \ 
-	echo "Update stack.yml to v2.2.94 ... " && \
-	git add . && \
-	git commit -m ${ARGUMENT} && \
-	git push fork HEAD:master && \
-	git tag v0.1.85 -am Version-Bump && \
-	git push fork HEAD:master --tags
-	git checkout main
+	echo "Update Release Number to v0.1.85 in auth/micros/go.mod " && \ 
+	make commit ${ARGUMENT} && \
+	git tag v0.1.85 -am ${ARGUMENT} && \
+	git push fork HEAD:master --tags && \
+	git checkout main && \
+	git merge gmcd && \
 	faas up --build-arg GO111MODULE=on
