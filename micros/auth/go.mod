@@ -13,6 +13,6 @@ require (
 	github.com/google/uuid v1.2.0
 	github.com/nbutton23/zxcvbn-go v0.0.0-20210217022336-fa2cb2858354
 	github.com/red-gold/telar-core v0.1.16
-	github.com/GMcD/telar-web v0.1.85
+	github.com/GMcD/telar-web v0.1.86
 	golang.org/x/oauth2 v0.0.0-20210220000619-9bb904979d93
 )
