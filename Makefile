@@ -26,6 +26,11 @@ commit:		## Short hand for Commit to Prod Remote
 fork:		## Short hand for Commit to Fork Remote
 	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
 
+tag:		## Tag a Release
+tag: fork
+	git tag $${RELEASE_TAG} -am ${ARGUMENT}
+	git push fork HEAD:master --tags 
+
 logs:		## Log Pod ${ARGUMENT} by prefix
 logs:
 	kubectl logs --namespace openfaas-fn $(shell kubectl get pods --namespace openfaas-fn -o=jsonpath='{.items[*].metadata.name}' -l faas_function=${ARGUMENT})
@@ -43,14 +48,6 @@ up: login
 	# ./update-micros.sh telar-web
 	echo "Running FaaS up..."
 	faas up --build-arg GO111MODULE=on
-
-fork:		## Short hand for Commit to Fork Remote
-	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
-
-tag:		## Tag a Release
-tag: fork
-	git tag $${RELEASE_TAG} -am ${ARGUMENT}
-	git push fork HEAD:master --tags 
 
 version:	## Commit, push and tag new version of telar-web
 version:
