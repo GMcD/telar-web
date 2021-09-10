@@ -44,6 +44,14 @@ up: login
 	echo "Running FaaS up..."
 	faas up --build-arg GO111MODULE=on
 
+fork:		## Short hand for Commit to Fork Remote
+	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
+
+tag:		## Tag a Release
+tag: fork
+	git tag $${RELEASE_TAG} -am ${ARGUMENT}
+	git push fork HEAD:master --tags 
+
 version:	## Commit, push and tag new version of telar-web
 version:
 	echo "On prod/main" && \
@@ -53,10 +61,8 @@ version:
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.86 in auth/micros/go.mod " && \ 
-	make fork ${ARGUMENT} && \
-	git tag v0.1.86 -am ${ARGUMENT} && \
-	git push fork HEAD:master --tags && \
+	echo "Update Release Number to v0.1.86 in micros/auth/go.mod and .env " && \ 
+	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \
 	faas up --build-arg GO111MODULE=on
