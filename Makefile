@@ -44,7 +44,7 @@ up: login
 	echo "Running FaaS up..."
 	faas up --build-arg GO111MODULE=on
 
-version:	## Commit, push and tag new version
+version:	## Commit, push and tag new version of telar-web
 version:
 	echo "On prod/main" && \
 	echo "Edit code...."
@@ -57,6 +57,20 @@ version:
 	make fork ${ARGUMENT} && \
 	git tag v0.1.86 -am ${ARGUMENT} && \
 	git push fork HEAD:master --tags && \
+	git checkout main && \
+	git merge gmcd && \
+	faas up --build-arg GO111MODULE=on
+
+core:	## Commit, push and tag new version of telar-core
+core:
+	echo "On prod/main" && \
+	echo "Edit code...."
+	make commit ${ARGUMENT} && \
+	echo "Move to fork/gmcd" && \
+	git checkout gmcd && \
+	git merge main && \
+	echo "Update .env with new RELEASE_TAG"
+	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \
 	faas up --build-arg GO111MODULE=on

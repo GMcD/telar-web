@@ -105,37 +105,15 @@ func Signup2Handle(c *fiber.Ctx) error {
 	createdDate := utils.UTCNowUnix()
 	userUUID := uuid.Must(uuid.NewV4())
 	hashPassword, hashErr := utils.Hash(p.password)
-	remoteIpAddress := c.IP()
+	//	remoteIpAddress := c.IP()
 	if hashErr != nil {
 		errorMessage := fmt.Sprintf("Cannot hash the password! error: %s", hashErr.Error())
 		log.Error(errorMessage)
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("hashPassword", "Cannot hash the password!"))
 	}
 
-	// Create signup token
-	newUserId := uuid.Must(uuid.NewV4())
-	userVerificationService, serviceErr := service.NewUserVerificationService(database.Db)
-	if serviceErr != nil {
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userVerificationService", serviceErr.Error()))
-	}
-
-	token := ""
-	var tokenErr error
-	token, tokenErr = userVerificationService.CreateEmailVerficationToken(service.EmailVerificationToken{
-		UserId:          newUserId,
-		HtmlTmplPath:    "views/email_code_verify.html",
-		Username:        model.User.Email,
-		EmailTo:         model.User.Email,
-		EmailSubject:    "Your verification code",
-		RemoteIpAddress: remoteIpAddress,
-		FullName:        model.User.Fullname,
-		UserPassword:    model.User.Password,
-	}, &config)
-	if tokenErr != nil {
-		log.Error("Error on creating token: %s", tokenErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findUserAuth", "Error happened in creating token!"))
-	}
-
+	// Create UserAuth pre-verified with default token
+	token := "000000"
 	newUserAuth := &dto.UserAuth{
 		ObjectId:      userUUID,
 		Username:      p.email,
@@ -155,10 +133,8 @@ func Signup2Handle(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal", "Error happened during verification!"))
 	}
 
-	// Save into DB
-
-	// if that worked we need to make the socialprofile
-
+	// Create User Profile
+	newUserId := uuid.Must(uuid.NewV4())
 	socialName := generateSocialName(p.fullname, newUserId.String())
 	newUserProfile := &models.UserProfileModel{
 		ObjectId:    newUserId,
