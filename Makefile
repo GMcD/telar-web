@@ -58,7 +58,7 @@ version:
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.86 in micros/auth/go.mod and .env " && \ 
+	echo "Update Release Number to v0.1.88 in micros/auth/go.mod and .env " && \ 
 	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \
