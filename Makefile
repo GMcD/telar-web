@@ -25,6 +25,7 @@ stack:		## Update ECR tags in stack.yml
 
 commit:		## Short hand for Commit to Prod Remote
 commit: 
+	for i in actions admin auth notifications profile setting storage; do pushd micros/$i > /dev/null; go mod tidy; popd > /dev/null; done
 	npm --no-git-tag-version version patch
 	git add .; git commit -m ${ARGUMENT}; git push
 

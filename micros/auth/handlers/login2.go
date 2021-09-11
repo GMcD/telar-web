@@ -62,6 +62,8 @@ func Login2Handle(c *fiber.Ctx) error {
 		return c.Status(http.StatusUnauthorized).JSON(utils.Error("passwordNotMatch", "Password doesn't match!"))
 	}
 
+	log.Info(" Getting profile for : %s", foundUser.ObjectId)
+
 	profileChannel := readProfileAsync(foundUser.ObjectId)
 	langChannel := readLanguageSettingAsync(foundUser.ObjectId,
 		&UserInfoInReq{UserId: foundUser.ObjectId, Username: foundUser.Username, SystemRole: foundUser.Role})

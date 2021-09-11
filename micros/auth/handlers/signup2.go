@@ -127,16 +127,15 @@ func Signup2Handle(c *fiber.Ctx) error {
 	}
 
 	// Create User Profile
-	newUserId := uuid.Must(uuid.NewV4())
-	socialName := generateSocialName(p.fullname, newUserId.String())
+	socialName := generateSocialName(p.fullname, userUUID.String())
 	newUserProfile := &models.UserProfileModel{
-		ObjectId:    newUserId,
+		ObjectId:    userUUID,
 		FullName:    p.fullname,
 		SocialName:  socialName,
 		CreatedDate: createdDate,
 		LastUpdated: createdDate,
 		Email:       p.email,
-		Avatar:      "https://util.telar.dev/api/avatars/" + newUserId.String(),
+		Avatar:      "https://util.telar.dev/api/avatars/" + userUUID.String(),
 		Banner:      fmt.Sprintf("https://picsum.photos/id/%d/900/300/?blur", generateRandomNumber(1, 1000)),
 		Permission:  constants.Public,
 	}
