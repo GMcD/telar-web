@@ -1,0 +1,7 @@
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/actions:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/admin:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/auth:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/profile:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/setting:v2.2.99
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/storage:v2.2.99
