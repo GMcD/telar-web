@@ -25,8 +25,8 @@ stack:		## Update ECR tags in stack.yml
 
 commit:		## Short hand for Commit to Prod Remote
 commit: stack
-	git add .; git commit -m ${ARGUMENT}; git push
 	npm --no-git-tag-version version patch
+	git add .; git commit -m ${ARGUMENT}; git push
 
 fork:		## Short hand for Commit to Fork Remote
 	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
@@ -54,21 +54,21 @@ up: login
 	echo "Running FaaS up..."
 	faas up --build-arg GO111MODULE=on
 
-version:	## Commit, push and tag new version of telar-web
-version:
+telar-web:	## Commit, push and tag new version of telar-web
+telar-web:
 	echo "Edit code on prod/main" && \
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.88 in micros/auth/go.mod and .env " && \ 
+	echo "Update Release Number to v0.1.89 in micros/auth/go.mod " && \ 
 	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \
 	faas up --build-arg GO111MODULE=on
 
-core:	## Commit, push and tag new version of telar-core
-core:
+telar-core:	## Commit, push and tag new version of telar-core
+telar-core:
 	echo "Edit code on prod/main" && \
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
