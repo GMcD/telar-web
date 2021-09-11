@@ -1,6 +1,7 @@
 module github.com/GMcD/telar-web/micros/auth
 
 replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.21
+replace github.com/GMcD/telar-web v0.1.89 => github.com/GMcD/telar-web v0.1.95
 
 go 1.15
 
