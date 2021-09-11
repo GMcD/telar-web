@@ -24,6 +24,9 @@ stack:		## Update ECR tags in stack.yml
 	awk -F "." '/354455067292/ { printf $$1; for(i=2;i<NF;i++) printf FS$$i; print FS$$NF+1 } !/354455067292/ { print }' stack.yml > .stack.yml && mv .stack.yml stack.yml
 
 commit:		## Short hand for Commit to Prod Remote
+commit:		##   * All references to version should be equal, and one more than published
+commit:		##   *  -> go.mod == v0.1.101
+commit:		##   *  -> package.json == v0.1.100
 commit: 
 	for i in actions admin auth notifications profile setting storage; do pushd micros/$i > /dev/null; go mod tidy; popd > /dev/null; done
 	npm --no-git-tag-version version patch
