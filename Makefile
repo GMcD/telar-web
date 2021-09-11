@@ -24,11 +24,12 @@ stack:		## Update ECR tags in stack.yml
 	awk -F "." '/354455067292/ { printf $$1; for(i=2;i<NF;i++) printf FS$$i; print FS$$NF+1 } !/354455067292/ { print }' stack.yml > .stack.yml && mv .stack.yml stack.yml
 
 commit:		## Short hand for Commit to Prod Remote
-commit: stack
+commit: 
 	npm --no-git-tag-version version patch
 	git add .; git commit -m ${ARGUMENT}; git push
 
 fork:		## Short hand for Commit to Fork Remote
+fork: stack
 	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
 
 tag:		## Tag a Release
