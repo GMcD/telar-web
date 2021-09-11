@@ -34,11 +34,6 @@ func Signup2Handle(c *fiber.Ctx) error {
 	p.email = c.FormValue("email")
 	p.password = c.FormValue("password")
 
-	// if err := c.BodyParser(p); err != nil {
-	// 	errorMessage := fmt.Sprintf("Unmarshal User Error %s", err.Error())
-	// 	log.Error(errorMessage)
-	// 	return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userMarshal", "Can not parse body"))
-	// }
 	log.Info(fmt.Sprintf("%+v\n", p))
 
 	if p.fullname == "" {
@@ -187,10 +182,9 @@ func Signup2Handle(c *fiber.Ctx) error {
 	}
 
 	log.Info("\nSession is created: %s \n", session)
-	webURL := authConfig.ExternalRedirectDomain
-	return c.Render("redirect", fiber.Map{
-		"URL": webURL,
-	})
-	// change verify signup model
 
+	return c.JSON(fiber.Map{
+		"token":   session,
+		"version": utils.PkgVersion("telar-web"),
+	})
 }

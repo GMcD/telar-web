@@ -1,6 +1,6 @@
 module github.com/GMcD/telar-web/micros/notifications
 
-replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.18
+replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.21
 
 go 1.16
 

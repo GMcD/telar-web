@@ -20,15 +20,20 @@ ARGUMENT  := $(word 1,${CMD_ARGS})
 help:		## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+stack:		## Update ECR tags in stack.yml
+	awk -F "." '/354455067292/ { printf $1; for(i=2;i<NF;i++) printf FS$i; print FS$NF+1 }' stack.yml > stack.yml
+
 commit:		## Short hand for Commit to Prod Remote
+commit: stack
 	git add .; git commit -m ${ARGUMENT}; git push
+	npm --no-git-tag-version version patch
 
 fork:		## Short hand for Commit to Fork Remote
 	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
 
 tag:		## Tag a Release
 tag: fork
-	git tag $${RELEASE_TAG} -am ${ARGUMENT}
+	git tag $(cat package.json | jq -j '.version') -am ${ARGUMENT}
 	git push fork HEAD:master --tags 
 
 logs:		## Log Pod ${ARGUMENT} by prefix
@@ -51,9 +56,7 @@ up: login
 
 version:	## Commit, push and tag new version of telar-web
 version:
-	echo "On prod/main" && \
-	echo "Edit code...."
-	echo "Update stack.yml to v2.2.95 ... " && \
+	echo "Edit code on prod/main" && \
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
@@ -66,13 +69,10 @@ version:
 
 core:	## Commit, push and tag new version of telar-core
 core:
-	echo "On prod/main" && \
-	echo "Edit code...."
+	echo "Edit code on prod/main" && \
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
-	git merge main && \
-	echo "Update .env with new RELEASE_TAG"
 	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \
