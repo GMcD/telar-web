@@ -1,7 +1,7 @@
 module github.com/GMcD/telar-web/micros/auth
 
 replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.21
-replace github.com/GMcD/telar-web v0.1.89 => github.com/GMcD/telar-web v0.1.93
+replace github.com/GMcD/telar-web v0.1.89 => github.com/GMcD/telar-web v0.1.94
 
 go 1.15
 
@@ -16,6 +16,6 @@ require (
 	github.com/google/uuid v1.2.0
 	github.com/nbutton23/zxcvbn-go v0.0.0-20210217022336-fa2cb2858354
 	github.com/red-gold/telar-core v0.1.16
-	github.com/GMcD/telar-web v0.1.93
+	github.com/GMcD/telar-web v0.1.94
 	golang.org/x/oauth2 v0.0.0-20210220000619-9bb904979d93
 )
