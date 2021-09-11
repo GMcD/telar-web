@@ -3,6 +3,7 @@ module github.com/GMcD/telar-web/micros/admin
 replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.21
 
 replace github.com/GMcD/telar-web v0.1.98 => github.com/GMcD/telar-web v0.1.102
+replace github.com/GMcD/telar-web v0.1.1010 => github.com/GMcD/telar-web v0.1.102
 
 go 1.16
 

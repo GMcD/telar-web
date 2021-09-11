@@ -128,6 +128,7 @@ func Login2Handle(c *fiber.Ctx) error {
 		"user":    profileResult.Profile,
 		"lang":    currentUserLang,
 		"session": session,
+		"version": utils.PkgVersion("telar-web"),
 	})
 
 }

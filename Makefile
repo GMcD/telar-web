@@ -28,7 +28,7 @@ commit:		##   * All references to version should be equal, and one more than pub
 commit:		##   *  -> go.mod == v0.1.101
 commit:		##   *  -> package.json == v0.1.100
 commit: 
-	for i in actions admin auth notifications profile setting storage; do pushd micros/$i > /dev/null; go mod tidy; popd > /dev/null; done
+	for i in actions admin auth notifications profile setting storage; do pushd micros/$i > /dev/null; rm go.sum; go mod tidy; popd > /dev/null; done
 	npm --no-git-tag-version version patch
 	git add .; git commit -m ${ARGUMENT}; git push
 
@@ -58,7 +58,7 @@ up: login
 	# ./update-micros.sh telar-core
 	# ./update-micros.sh telar-web
 	echo "Running FaaS up..."
-	faas up --build-arg GO111MODULE=on --filter ${ARGUMENT}
+	faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}
 
 telar-web:	## Commit, push and tag new version of telar-web
 telar-web:
