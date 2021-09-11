@@ -120,7 +120,6 @@ func Signup2Handle(c *fiber.Ctx) error {
 	}
 	userAuthErr := userAuthService.SaveUserAuth(newUserAuth)
 	if userAuthErr != nil {
-
 		errorMessage := fmt.Sprintf("Cannot save user authentication! error: %s", userAuthErr.Error())
 		log.Error(errorMessage)
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal", "Error happened during verification!"))
@@ -157,13 +156,13 @@ func Signup2Handle(c *fiber.Ctx) error {
 		token:            ProviderAccessToken{},
 		oauthProvider:    nil,
 		providerName:     *config.AppName,
-		profile:          &provider.Profile{Name: p.fullname, ID: newUserId.String(), Login: p.email},
+		profile:          &provider.Profile{Name: p.fullname, ID: userUUID.String(), Login: p.email},
 		organizationList: *config.OrgName,
 		claim: UserClaim{
 			DisplayName: p.fullname,
 			SocialName:  socialName,
 			Email:       p.email,
-			UserId:      newUserId.String(),
+			UserId:      userUUID.String(),
 			Role:        "user",
 			Banner:      newUserProfile.Banner,
 			TagLine:     newUserProfile.TagLine,

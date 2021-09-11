@@ -9,7 +9,7 @@ require (
 	cloud.google.com/go/storage v1.13.0
 	firebase.google.com/go v3.13.0+incompatible
 	github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c
-	github.com/GMcD/telar-web v0.1.99
+	github.com/GMcD/telar-web v0.1.100
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.4
 	github.com/gofiber/fiber/v2 v2.10.0
