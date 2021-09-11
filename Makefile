@@ -54,16 +54,16 @@ up: login
 	# ./update-micros.sh telar-core
 	# ./update-micros.sh telar-web
 	echo "Running FaaS up..."
-	faas up --build-arg GO111MODULE=on
+	faas up --build-arg GO111MODULE=on --filter ${ARGUMENT}
 
 telar-web:	## Commit, push and tag new version of telar-web
 telar-web:
 	echo "Edit code on prod/main" && \
+	echo "Bump all go.mods to package.json + 1 " && \ 
 	make commit ${ARGUMENT} && \
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.93 in micros/auth/go.mod " && \ 
 	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \

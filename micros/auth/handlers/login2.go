@@ -14,7 +14,7 @@ import (
 	utils "github.com/red-gold/telar-core/utils"
 )
 
-// LoginTelarHandler creates a handler for logging in telar social
+// Login2Handle creates a handler for logging in telar social
 func Login2Handle(c *fiber.Ctx) error {
 
 	model := &models.LoginModel{
