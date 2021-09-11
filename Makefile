@@ -34,7 +34,8 @@ fork: stack
 
 tag:		## Tag a Release
 tag: fork
-	git tag $(cat package.json | jq -j '.version') -am ${ARGUMENT}
+	git merge main && \
+	git tag v$$(cat package.json | jq -j '.version') -am ${ARGUMENT} && \
 	git push fork HEAD:master --tags 
 
 logs:		## Log Pod ${ARGUMENT} by prefix
