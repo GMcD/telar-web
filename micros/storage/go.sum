@@ -47,8 +47,8 @@ github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c h1:f89fE2vnsAVgn1
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJzH42Qrwe3EjL4tqW0be8o6/KZlnGDb7k5ui/M=
 github.com/GMcD/telar-core v0.1.21 h1:NiJQvB/CBj6Z4NTXG4LDuhP0bd2D4PVwy1Ef1B8xQl0=
 github.com/GMcD/telar-core v0.1.21/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
-github.com/GMcD/telar-web v0.1.98 h1:Cj3OVn8GYoIjVJkuY/IzGqjYVr/6iL4OdxVEEMCf3Ro=
-github.com/GMcD/telar-web v0.1.98/go.mod h1:2t8V8kxG0uQI8HiKiIKzTXe663PYSebExGKzo+/QZ70=
+github.com/GMcD/telar-web v0.1.101 h1:pwDjLUZCNmMQLvYHVRVhrGr38XxJcb7HOH0XBzIUQv0=
+github.com/GMcD/telar-web v0.1.101/go.mod h1:/GrYK1I272uGtbxARTY9DezNPmV2vFzmr9gvnOOQnso=
 github.com/MicahParks/keyfunc v0.3.2 h1:pv+bvbuLLhwBImjhOnk3CjK2uNyPnF0CbxlZPJiFHBs=
 github.com/MicahParks/keyfunc v0.3.2/go.mod h1:9gVJUF41JO0J6argCFDhvP7dgpa/vG+nWK3jnxlQSMU=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de/go.mod h1:uAbpy8G7sjNB4qYdY6ymf5OIQ+TLDPApBYiR0Vc3lhk=
