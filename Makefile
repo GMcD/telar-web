@@ -63,7 +63,7 @@ telar-web:
 	echo "Move to fork/gmcd" && \
 	git checkout gmcd && \
 	git merge main && \
-	echo "Update Release Number to v0.1.89 in micros/auth/go.mod " && \ 
+	echo "Update Release Number to v0.1.93 in micros/auth/go.mod " && \ 
 	make tag ${ARGUMENT} && \
 	git checkout main && \
 	git merge gmcd && \

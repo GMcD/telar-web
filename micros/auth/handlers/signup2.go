@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/GMcD/telar-web/constants"
-	ac "github.com/GMcD/telar-web/micros/auth/config"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	"github.com/GMcD/telar-web/micros/auth/dto"
 	"github.com/GMcD/telar-web/micros/auth/models"
@@ -26,7 +25,6 @@ type User struct {
 
 func Signup2Handle(c *fiber.Ctx) error {
 	config := coreConfig.AppConfig
-	authConfig := &ac.AuthConfig
 
 	// take parameters from Request
 	p := new(User)
