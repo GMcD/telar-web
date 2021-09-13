@@ -1,14 +1,14 @@
 module github.com/GMcD/telar-web/micros/admin
 
-replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.24
+replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.27
 
-replace github.com/GMcD/telar-web v0.1.103 => github.com/GMcD/telar-web v0.1.104
+replace github.com/GMcD/telar-web v0.1.103 => github.com/GMcD/telar-web v0.1.105
 
 go 1.16
 
 require (
 	github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c
-	github.com/GMcD/telar-web v0.1.104
+	github.com/GMcD/telar-web v0.1.105
 	github.com/GMcD/telar-web/micros/auth v0.0.0-20210911090803-a6e62e0844bd
 	github.com/GMcD/telar-web/micros/setting v0.0.0-20210911090803-a6e62e0844bd
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de

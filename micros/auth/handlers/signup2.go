@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/GMcD/cognito-jwt/verify"
 	"github.com/GMcD/telar-web/constants"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	"github.com/GMcD/telar-web/micros/auth/dto"
@@ -11,13 +12,14 @@ import (
 	"github.com/GMcD/telar-web/micros/auth/provider"
 	service "github.com/GMcD/telar-web/micros/auth/services"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
+	"github.com/sethvargo/go-password/password"
 )
 
 type User struct {
+	userid   string `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
 	fullname string `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
 	email    string `json:"email" xml:"email" form:"email" query:"email"`
 	password string `json:"password" xml:"password" form:"password" query:"password"`
@@ -26,13 +28,23 @@ type User struct {
 func Signup2Handle(c *fiber.Ctx) error {
 	config := coreConfig.AppConfig
 
+	// take Cognito JWT token from Authorization:
+	jwt = c.get("Authorization")
+	claims = verify.VerifyJWT(jwt)
+
 	// take parameters from Request
 	p := new(User)
-	p.fullname = c.FormValue("fullname")
-	p.email = c.FormValue("email")
-	p.password = c.FormValue("password")
+	p.userid = claims["cognito:username"]
+	p.fullname = claims["name"]
+	p.email = claims["email"]
+	p.password, _ = password.Generate(12, 4, 4, false, false)
 
 	log.Info(fmt.Sprintf("%+v\n", p))
+
+	if p.userid == "" {
+		log.Error("Signup2Handle: missing JWT claim : cognito:username")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingFullname", "Missing fullname"))
+	}
 
 	if p.fullname == "" {
 		log.Error("Signup2Handle: missing form value fullname")
@@ -96,7 +108,7 @@ func Signup2Handle(c *fiber.Ctx) error {
 
 	// Create New User Auth
 	createdDate := utils.UTCNowUnix()
-	userUUID := uuid.Must(uuid.NewV4())
+	userUUID := p.userid
 	hashPassword, hashErr := utils.Hash(p.password)
 	//	remoteIpAddress := c.IP()
 	if hashErr != nil {
