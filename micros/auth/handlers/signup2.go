@@ -20,10 +20,10 @@ import (
 )
 
 type User struct {
-	userid   string `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
-	fullname string `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
-	email    string `json:"email" xml:"email" form:"email" query:"email"`
-	password string `json:"password" xml:"password" form:"password" query:"password"`
+	userid   uuid.UUID `json:"userid" xml:"userid" form:"userid" query:"userid"`
+	fullname string    `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
+	email    string    `json:"email" xml:"email" form:"email" query:"email"`
+	password string    `json:"password" xml:"password" form:"password" query:"password"`
 }
 
 func Signup2Handle(c *fiber.Ctx) error {
@@ -31,21 +31,24 @@ func Signup2Handle(c *fiber.Ctx) error {
 
 	// take Cognito JWT token from Authorization:
 	jwt := c.Get("Authorization")
-	claims, _ := verify.VerifyJWT(jwt)
+	claims, jwtErr := verify.VerifyJWT(jwt)
+	if jwtErr != nil {
+		errorMessage := fmt.Sprintf("Error validating JWT token : %s", jwtErr.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("initUserSetupError", errorMessage))
+	}
+
+	cognitoUsername := claims["cognito:username"].(string)
+	cognitoUUID, _ := uuid.FromString(cognitoUsername)
 
 	// take parameters from Request
 	p := new(User)
-	p.userid, _ = uuid.FromString(claims["cognito:username"].(string))
+	p.userid = cognitoUUID
 	p.fullname = claims["name"].(string)
 	p.email = claims["email"].(string)
 	p.password, _ = password.Generate(12, 4, 4, false, false)
 
 	log.Info(fmt.Sprintf("%+v\n", p))
-
-	if p.userid == "" {
-		log.Error("Signup2Handle: missing JWT claim : cognito:username")
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingFullname", "Missing fullname"))
-	}
 
 	if p.fullname == "" {
 		log.Error("Signup2Handle: missing form value fullname")
