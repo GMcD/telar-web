@@ -12,6 +12,7 @@ import (
 	"github.com/GMcD/telar-web/micros/auth/provider"
 	service "github.com/GMcD/telar-web/micros/auth/services"
 	"github.com/gofiber/fiber/v2"
+	uuid "github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
@@ -30,11 +31,11 @@ func Signup2Handle(c *fiber.Ctx) error {
 
 	// take Cognito JWT token from Authorization:
 	jwt := c.Get("Authorization")
-	claims, err := verify.VerifyJWT(jwt)
+	claims, _ := verify.VerifyJWT(jwt)
 
 	// take parameters from Request
 	p := new(User)
-	p.userid, _ = uuid.FromString(claims["cognito:username"].(string)
+	p.userid, _ = uuid.FromString(claims["cognito:username"].(string))
 	p.fullname = claims["name"].(string)
 	p.email = claims["email"].(string)
 	p.password, _ = password.Generate(12, 4, 4, false, false)
