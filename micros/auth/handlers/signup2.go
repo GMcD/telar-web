@@ -29,14 +29,14 @@ func Signup2Handle(c *fiber.Ctx) error {
 	config := coreConfig.AppConfig
 
 	// take Cognito JWT token from Authorization:
-	jwt = c.get("Authorization")
-	claims = verify.VerifyJWT(jwt)
+	jwt := c.Get("Authorization")
+	claims, err := verify.VerifyJWT(jwt)
 
 	// take parameters from Request
 	p := new(User)
-	p.userid = claims["cognito:username"]
-	p.fullname = claims["name"]
-	p.email = claims["email"]
+	p.userid, _ = uuid.FromString(claims["cognito:username"].(string)
+	p.fullname = claims["name"].(string)
+	p.email = claims["email"].(string)
 	p.password, _ = password.Generate(12, 4, 4, false, false)
 
 	log.Info(fmt.Sprintf("%+v\n", p))
