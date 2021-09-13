@@ -2,13 +2,17 @@ module github.com/GMcD/telar-web/micros/auth
 
 replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.29
 
-replace github.com/GMcD/telar-web v0.1.103 => github.com/GMcD/telar-web v0.1.107
+replace github.com/GMcD/telar-web v0.1.103 => github.com/GMcD/telar-web v0.1.108
 
-go 1.16
+replace github.com/GMcD/telar-web v0.1.107 => github.com/GMcD/telar-web v0.1.108
+
+replace github.com/GMcD/telar-web v0.0.0-20210913144529-5d6f7a95512d => github.com/GMcD/telar-web v0.1.108
+
+go 1.15
 
 require (
 	github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c
-	github.com/GMcD/telar-web v0.1.107
+	github.com/GMcD/telar-web v0.1.108
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.3
@@ -18,5 +22,6 @@ require (
 	github.com/google/uuid v1.2.0
 	github.com/nbutton23/zxcvbn-go v0.0.0-20210217022336-fa2cb2858354
 	github.com/red-gold/telar-core v0.1.16
+	github.com/sethvargo/go-password v0.2.0
 	golang.org/x/oauth2 v0.0.0-20210220000619-9bb904979d93
 )
