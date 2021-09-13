@@ -42,10 +42,8 @@ func SetupRoutes(app *fiber.App) {
 
 	// Signup2
 	app.Post("/signup2", handlers.Signup2Handle)
-	app.Post("/login2", handlers.Login2Handle)
 
-	// Signin2
-	// app.Post("/signin2", handlers.Signin2Handle)
+	// app.Post("/login2", handlers.Login2Handle)
 
 	// Password
 	app.Get("/password/reset/:verifyId", handlers.ResetPasswordPageHandler)
