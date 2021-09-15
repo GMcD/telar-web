@@ -25,8 +25,6 @@ cloud.google.com/go/bigquery v1.7.0/go.mod h1://okPTzCYNXSlb24MZs83e2Do+h+VXtc4g
 cloud.google.com/go/bigquery v1.8.0/go.mod h1:J5hqkt3O0uAFnINi6JXValWIb1v0goeZM77hZzJN/fQ=
 cloud.google.com/go/datastore v1.0.0/go.mod h1:LXYbyblFSglQ5pkeyhO+Qmw7ukd3C+pD7TKLgZqpHYE=
 cloud.google.com/go/datastore v1.1.0/go.mod h1:umbIZjpQpHh4hmRpGhH4tLFup+FVzqBi1b3c64qFpCk=
-cloud.google.com/go/firestore v1.5.0 h1:4qNItsmc4GP6UOZPGemmHY4ZfPofVhcaKXsYw9wm9oA=
-cloud.google.com/go/firestore v1.5.0/go.mod h1:c4nNYR1qdq7eaZ+jSc5fonrQN2k3M7sWATcYTiakjEo=
 cloud.google.com/go/pubsub v1.0.1/go.mod h1:R0Gpsv3s54REJCy4fxDixWD93lHJMoZTyQ2kNxGRt3I=
 cloud.google.com/go/pubsub v1.1.0/go.mod h1:EwwdRX2sKPjnvnqCa270oGRyludottCI76h+R3AArQw=
 cloud.google.com/go/pubsub v1.2.0/go.mod h1:jhfEVHT8odbXTkndysNHCcx0awwzvfOlguIAii9o8iA=
@@ -39,16 +37,14 @@ cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9
 cloud.google.com/go/storage v1.13.0 h1:amPvhCOI+Hltp6rPu+62YdwhIrjf+34PKVAL4HwgYwk=
 cloud.google.com/go/storage v1.13.0/go.mod h1:pqFyBUK3zZqMIIU5+8NaZq6/Ma3ClgUg9Hv5jfuJnvo=
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
-firebase.google.com/go v3.13.0+incompatible h1:3TdYC3DDi6aHn20qoRkxwGqNgdjtblwVAyRLQwGn/+4=
-firebase.google.com/go v3.13.0+incompatible/go.mod h1:xlah6XbEyW6tbfSklcfe5FHJIwjt8toICdV5Wh9ptHs=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c h1:f89fE2vnsAVgn1qg5rvbswtx3JxfnteaLuaLnyP1I00=
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJzH42Qrwe3EjL4tqW0be8o6/KZlnGDb7k5ui/M=
-github.com/GMcD/telar-core v0.1.21 h1:NiJQvB/CBj6Z4NTXG4LDuhP0bd2D4PVwy1Ef1B8xQl0=
-github.com/GMcD/telar-core v0.1.21/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
-github.com/GMcD/telar-web v0.1.104 h1:xwC4h8GVQd8XHmEsSat3zcSgz2GEfLiL0u/QA/aZb58=
-github.com/GMcD/telar-web v0.1.104/go.mod h1:/GrYK1I272uGtbxARTY9DezNPmV2vFzmr9gvnOOQnso=
+github.com/GMcD/telar-core v0.1.30 h1:6KOX1ZPp0+C3F5X157LSa8OQ6DhOr4zaxJ8fsVYcQ1o=
+github.com/GMcD/telar-core v0.1.30/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
+github.com/GMcD/telar-web v0.1.109 h1:h4RRFOp66tlAP9P+mkcGz8sguc4bodJDnXQOPYg5epU=
+github.com/GMcD/telar-web v0.1.109/go.mod h1:RYVyyqqecCRH6QFbuwfYJ/YD7JaTg99jkFORsBP+QmA=
 github.com/MicahParks/keyfunc v0.3.2 h1:pv+bvbuLLhwBImjhOnk3CjK2uNyPnF0CbxlZPJiFHBs=
 github.com/MicahParks/keyfunc v0.3.2/go.mod h1:9gVJUF41JO0J6argCFDhvP7dgpa/vG+nWK3jnxlQSMU=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de/go.mod h1:uAbpy8G7sjNB4qYdY6ymf5OIQ+TLDPApBYiR0Vc3lhk=
@@ -397,7 +393,6 @@ golang.org/x/oauth2 v0.0.0-20200902213428-5d25da1a8d43/go.mod h1:KelEdhl1UZF7XfJ
 golang.org/x/oauth2 v0.0.0-20201109201403-9fd604954f58/go.mod h1:KelEdhl1UZF7XfJ4dDtk6s++YSgaE7mD/BuKKDLBl4A=
 golang.org/x/oauth2 v0.0.0-20201208152858-08078c50e5b5/go.mod h1:KelEdhl1UZF7XfJ4dDtk6s++YSgaE7mD/BuKKDLBl4A=
 golang.org/x/oauth2 v0.0.0-20210113205817-d3ed898aa8a3/go.mod h1:KelEdhl1UZF7XfJ4dDtk6s++YSgaE7mD/BuKKDLBl4A=
-golang.org/x/oauth2 v0.0.0-20210218202405-ba52d332ba99/go.mod h1:KelEdhl1UZF7XfJ4dDtk6s++YSgaE7mD/BuKKDLBl4A=
 golang.org/x/oauth2 v0.0.0-20210220000619-9bb904979d93 h1:alLDrZkL34Y2bnGHfvC1CYBRBXCXgx8AC2vY4MRtYX4=
 golang.org/x/oauth2 v0.0.0-20210220000619-9bb904979d93/go.mod h1:KelEdhl1UZF7XfJ4dDtk6s++YSgaE7mD/BuKKDLBl4A=
 golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
@@ -457,7 +452,6 @@ golang.org/x/sys v0.0.0-20210104204734-6f8348627aad/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20210112080510-489259a85091/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210119212857-b64e53b001e4/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.0.0-20210223095934-7937bea0104d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210225134936-a50acf3fe073/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210423082822-04245dca01da/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210514084401-e8d321eab015/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

@@ -137,6 +137,11 @@ functions:
     - config/storage_config.yml
     - config/server_web_config.yml
     - config/gateway_config.yml
+    environment:
+      ASSET_ACCESS_ID: AKIAVFBZLDKOLL2DB763
+      ASSET_ACCESS_SECRET: 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
+      ASSET_HOST: s3.eu-west-2.amazonaws.com
+      ASSET_BUCKET: prod-monitalks-media
     labels:
       com.openfaas.scale.zero: "false"
       openfaas-cloud: "1"
@@ -148,3 +153,4 @@ functions:
 provider:
   name: openfaas
   gateway: https://openfaas.prod.monitalks.io
+
