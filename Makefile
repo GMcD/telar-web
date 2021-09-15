@@ -37,10 +37,14 @@ fork: stack
 	git add . ; git commit -m ${ARGUMENT}; git push fork HEAD:master 
 
 tag:		## Tag a Release
+tag:		##   * Checkout fork/gmcd, update, push, tag, and release. Checkout prod/main.
 tag: fork
+	git checkout gmcd && \
 	git merge main && \
+	npm --no-git-tag-version version patch && \
 	git tag v$$(cat package.json | jq -j '.version') -am ${ARGUMENT} && \
-	git push fork HEAD:master --tags 
+	git push fork HEAD:master --tags --tags && \
+	git checkout main 
 
 logs:		## Log Pod ${ARGUMENT} by prefix
 logs:
