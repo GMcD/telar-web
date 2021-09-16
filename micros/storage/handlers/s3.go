@@ -3,6 +3,7 @@ package handlers
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"mime/multipart"
 	"os"
 
@@ -15,12 +16,20 @@ import (
 )
 
 func ConnectAws() (*session.Session, error) {
-	accessKeyID := string("/var/openfaas/secrets/media-access-key-id")
-	secretAccessKey := string("/var/openfaas/secrets/media-secret-access-key")
+	ak, akError := ioutil.ReadFile("/var/openfaas/secrets/media-access-key-id")
+	if akError != nil {
+		return nil, akError
+	}
+	accessKeyID := string(ak)
+	as, asError := ioutil.ReadFile("/var/openfaas/secrets/media-secret-access-key")
+	if asError != nil {
+		return nil, asError
+	}
+	secretAccessKey := string(as)
 
 	log.Info("AWS Access Key %s\n", accessKeyID)
-	if accessKeyID == "" {
-		return nil, errors.New("Cannot read AWS Access Key secret.")
+	if accessKeyID == "" || secretAccessKey == "" {
+		return nil, errors.New("Invalid AWS Access Credentials.")
 	}
 
 	myRegion := os.Getenv("AWS_REGION")

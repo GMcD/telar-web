@@ -28,8 +28,6 @@ commit:		##   * All references to version should be equal, and one more than pub
 commit:		##   *  -> go.mod == v0.1.101
 commit:		##   *  -> package.json == v0.1.100
 commit: 
-	# for i in actions admin auth notifications profile setting storage; do pushd micros/$$i > /dev/null; rm go.sum; go mod tidy; popd > /dev/null; done
-	# npm --no-git-tag-version version patch
 	git add .; git commit -m ${ARGUMENT}; git push
 
 fork:		## Short hand for Commit to Fork Remote
