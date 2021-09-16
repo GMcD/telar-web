@@ -62,7 +62,7 @@ up: login
 	# ./update-micros.sh telar-core
 	# ./update-micros.sh telar-web
 	echo "Running FaaS up..."
-	faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}
+	GOPRIVATE=github.com/GMcD faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}
 
 telar-web:	## Commit, push and tag new version of telar-web
 telar-web:
