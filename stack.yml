@@ -1,0 +1,155 @@
+functions:
+  actions:
+    lang: golang-middleware
+    handler: ./micros/actions
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/actions:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/action_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  admin:
+    lang: golang-middleware
+    handler: ./micros/admin
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/admin:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/admin_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  auth:
+    lang: golang-middleware
+    handler: ./micros/auth
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/auth:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/auth_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: auth-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  notifications:
+    lang: golang-middleware
+    handler: ./micros/notifications
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/notification_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  profile:
+    lang: golang-middleware
+    handler: ./micros/profile
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/profile:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/profile_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  setting:
+    lang: golang-middleware
+    handler: ./micros/setting
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/setting:v2.2.114
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/setting_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+  storage:
+    lang: golang-middleware
+    handler: ./micros/storage
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/storage:v2.2.114
+    fprocess: ""
+    secrets:
+    - telar-web-secrets
+    - aws-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/storage_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    environment:
+      ASSET_HOST: s3.eu-west-2.amazonaws.com
+      ASSET_BUCKET: prod-monitalks-media
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
+provider:
+  name: openfaas
+  gateway: https://openfaas.prod.monitalks.io
+

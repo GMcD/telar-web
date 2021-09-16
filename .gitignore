@@ -5,7 +5,6 @@ key
 key.pub
 jwt-private-key
 jwt-public-key
-stack.yml
 serviceAccountKey.json
 playground/functions/*
 playground/storage/serviceAccountKey.json

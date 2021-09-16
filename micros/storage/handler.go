@@ -5,7 +5,6 @@ import (
 
 	micros "github.com/GMcD/telar-web/micros"
 	appConfig "github.com/GMcD/telar-web/micros/storage/config"
-	"github.com/GMcD/telar-web/micros/storage/handlers"
 	"github.com/GMcD/telar-web/micros/storage/router"
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
@@ -44,14 +43,6 @@ func init() {
 
 // Handler function
 func Handle(w http.ResponseWriter, r *http.Request) {
-
-	app.Use(func(c *fiber.Ctx) error {
-		session, err := handlers.ConnectAws()
-		if err != nil {
-			c.Locals("aws", session)
-		}
-		return c.Next()
-	})
 
 	adaptor.FiberApp(app)(w, r)
 }

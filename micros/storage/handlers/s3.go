@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"errors"
 	"fmt"
 	"mime/multipart"
 	"os"
@@ -14,8 +15,13 @@ import (
 )
 
 func ConnectAws() (*session.Session, error) {
-	accessKeyID := os.Getenv("ASSET_ACCESS_ID")
-	secretAccessKey := os.Getenv("ASSET_ACCESS_SECRET")
+	accessKeyID := string("/var/openfaas/secrets/access-key-id")
+	secretAccessKey := string("/var/openfaas/secrets/secret-access-key")
+
+	if accessKeyID == "" {
+		return nil, errors.New("Cannot read AWS Access Key secret.")
+	}
+
 	myRegion := os.Getenv("AWS_REGION")
 
 	sess, err := session.NewSession(
@@ -37,11 +43,14 @@ func ConnectAws() (*session.Session, error) {
 
 // Upload File to Bucket with key ObjectName
 func UploadImage(c *fiber.Ctx, fileHeader *multipart.FileHeader, objectName string) (string, error) {
-	// var buf bytes.Buffer
 
-	sess := c.Locals("aws").(*session.Session)
+	//TODO: Move into handler setup?
+	session, err := ConnectAws()
+	if session == nil {
+		return "", errors.New("S3 Session connection failedt.")
+	}
 
-	uploader := s3manager.NewUploader(sess)
+	uploader := s3manager.NewUploader(session)
 
 	myBucket := os.Getenv("ASSET_BUCKET")
 	myDomain := os.Getenv("ASSET_HOST")
