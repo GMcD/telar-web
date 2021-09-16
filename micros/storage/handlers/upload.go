@@ -75,8 +75,8 @@ func UploadeHandle(c *fiber.Ctx) error {
 	log.Info("Object URL: %s", downloadURL)
 
 	return c.JSON(fiber.Map{
-		"payload": downloadURL,
-		"path":    s3Path,
+		"payload": s3Path,
+		"path":    downloadURL,
 	})
 
 }

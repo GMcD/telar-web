@@ -82,6 +82,6 @@ func UploadImage(c *fiber.Ctx, fileHeader *multipart.FileHeader, objectName stri
 	if err != nil {
 		return "", err
 	}
-	filepath := fmt.Sprintf("https://%s.%s/%s", myBucket, myDomain, file)
+	filepath := fmt.Sprintf("https://%s.%s/%s", myBucket, myDomain, objectName)
 	return filepath, nil
 }
