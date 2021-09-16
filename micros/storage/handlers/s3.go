@@ -15,8 +15,8 @@ import (
 )
 
 func ConnectAws() (*session.Session, error) {
-	accessKeyID := string("/var/openfaas/secrets/access-key-id")
-	secretAccessKey := string("/var/openfaas/secrets/secret-access-key")
+	accessKeyID := string("/var/openfaas/secrets/media-access-key-id")
+	secretAccessKey := string("/var/openfaas/secrets/media-secret-access-key")
 
 	log.Info("AWS Access Key %s\n", accessKeyID)
 	if accessKeyID == "" {
@@ -48,7 +48,7 @@ func UploadImage(c *fiber.Ctx, fileHeader *multipart.FileHeader, objectName stri
 	//TODO: Move into handler setup?
 	session, err := ConnectAws()
 	if session == nil {
-		return "", errors.New("S3 Session connection failedt.")
+		return "", errors.New("S3 Session connection failed.")
 	}
 
 	uploader := s3manager.NewUploader(session)
