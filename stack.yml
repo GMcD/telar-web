@@ -139,6 +139,7 @@ functions:
     - config/server_web_config.yml
     - config/gateway_config.yml
     environment:
+      AWS_REGION: eu-west-2
       ASSET_HOST: s3.eu-west-2.amazonaws.com
       ASSET_BUCKET: prod-monitalks-media
     labels:

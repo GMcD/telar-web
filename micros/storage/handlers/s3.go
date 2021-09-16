@@ -18,6 +18,7 @@ func ConnectAws() (*session.Session, error) {
 	accessKeyID := string("/var/openfaas/secrets/access-key-id")
 	secretAccessKey := string("/var/openfaas/secrets/secret-access-key")
 
+	log.Info("AWS Access Key %s\n", accessKeyID)
 	if accessKeyID == "" {
 		return nil, errors.New("Cannot read AWS Access Key secret.")
 	}
