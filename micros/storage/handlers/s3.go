@@ -16,18 +16,20 @@ import (
 )
 
 func ConnectAws() (*session.Session, error) {
-	ak, akError := ioutil.ReadFile("/var/openfaas/secrets/media-access-key-id")
+	keyFile := "/var/openfaas/secrets/media-access-key-id"
+	secretFile := "/var/openfaas/secrets/media-secret-access-key"
+	ak, akError := ioutil.ReadFile(keyFile)
 	if akError != nil {
 		return nil, akError
 	}
 	accessKeyID := string(ak)
-	as, asError := ioutil.ReadFile("/var/openfaas/secrets/media-secret-access-key")
+	as, asError := ioutil.ReadFile(secretFile)
 	if asError != nil {
 		return nil, asError
 	}
 	secretAccessKey := string(as)
 
-	log.Info("AWS Access Key %s\n", accessKeyID)
+	log.Info("AWS Access Key %s, read from %s.\n", accessKeyID, keyFile)
 	if accessKeyID == "" || secretAccessKey == "" {
 		return nil, errors.New("Invalid AWS Access Credentials.")
 	}
