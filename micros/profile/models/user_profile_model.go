@@ -7,19 +7,19 @@ import (
 
 type UserProfileModel struct {
 	ObjectId       uuid.UUID                     `json:"objectId" bson:"objectId"`
-	FullName       string                        `json:"fullName" bson:"fullName"`
-	SocialName     string                        `json:"socialName" bson:"socialName"`
-	Avatar         string                        `json:"avatar" bson:"avatar"`
+	FullName       string                        `json:"fullName" bson:"fullName", validate:"max=50"`
+	SocialName     string                        `json:"socialName" bson:"socialName", validate:"max=100"`
+	Avatar         string                        `json:"avatar" bson:"avatar", validate:"max=5000"`
 	Banner         string                        `json:"banner" bson:"banner"`
-	TagLine        string                        `json:"tagLine" bson:"tagLine"`
+	TagLine        string                        `json:"tagLine" bson:"tagLine", , validate:"max=100"`
 	CreatedDate    int64                         `json:"created_date" bson:"created_date"`
 	LastUpdated    int64                         `json:"last_updated" bson:"last_updated"`
 	LastSeen       int64                         `json:"lastSeen" bson:"lastSeen"`
-	Email          string                        `json:"email" bson:"email"`
+	Email          string                        `json:"email" bson:"email", validate:"max=200"`
 	Birthday       int64                         `json:"birthday" bson:"birthday"`
-	WebUrl         string                        `json:"webUrl" bson:"webUrl"`
-	CompanyName    string                        `json:"companyName" bson:"companyName"`
-	Country        string                        `json:"country" bson:"country"`
+	WebUrl         string                        `json:"webUrl" bson:"webUrl", validate:"max=150"`
+	CompanyName    string                        `json:"companyName" bson:"companyName", validate:"max=100"`
+	Country        string                        `json:"country" bson:"country", validate:"max=100"`
 	Address        string                        `json:"address" bson:"address"`
 	Phone          string                        `json:"phone" bson:"phone"`
 	VoteCount      int64                         `json:"voteCount" bson:"voteCount"`
