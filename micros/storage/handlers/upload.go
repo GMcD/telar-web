@@ -69,7 +69,8 @@ func UploadeHandle(c *fiber.Ctx) error {
 	}
 	log.Info("Object Path: %s", s3Path)
 
-	prettyURL := utils.GetPrettyURLf(storageConfig.BaseRoute)
+	//TODO: this hard codes the s3 path to frontend, rather than routing through the API
+	prettyURL := "/function" // utils.GetPrettyURLf(storageConfig.BaseRoute)
 	downloadURL := fmt.Sprintf("%s/%s/%s/%s", *coreSetting.AppConfig.Gateway+prettyURL,
 		currentUser.UserID, dirName, fileNameWithExtension)
 	log.Info("Object URL: %s", downloadURL)
