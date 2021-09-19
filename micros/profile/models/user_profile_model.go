@@ -11,7 +11,7 @@ type UserProfileModel struct {
 	SocialName     string                        `json:"socialName" bson:"socialName", validate:"max=100"`
 	Avatar         string                        `json:"avatar" bson:"avatar", validate:"max=5000"`
 	Banner         string                        `json:"banner" bson:"banner"`
-	TagLine        string                        `json:"tagLine" bson:"tagLine", , validate:"max=100"`
+	TagLine        string                        `json:"tagLine" bson:"tagLine", validate:"max=100"`
 	CreatedDate    int64                         `json:"created_date" bson:"created_date"`
 	LastUpdated    int64                         `json:"last_updated" bson:"last_updated"`
 	LastSeen       int64                         `json:"lastSeen" bson:"lastSeen"`
