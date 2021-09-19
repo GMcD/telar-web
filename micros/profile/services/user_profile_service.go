@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"strings"
 
 	dto "github.com/GMcD/telar-web/micros/profile/dto"
 	uuid "github.com/gofrs/uuid"
@@ -10,6 +11,9 @@ import (
 	"github.com/red-gold/telar-core/data/mongodb"
 	mongoRepo "github.com/red-gold/telar-core/data/mongodb"
 	"github.com/red-gold/telar-core/utils"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // UserProfileService handlers with injected dependencies
@@ -103,7 +107,13 @@ func (s UserProfileServiceImpl) QueryUserProfile(search string, sortBy string, p
 	limit := numberOfItems
 	filter := make(map[string]interface{})
 	if search != "" {
-		filter["$text"] = coreData.SearchOperator{Search: search}
+		//filter["$text"] = coreData.SearchOperator{Search: search}
+		terms := strings.Split(search, " ")
+		regexp := strings.Join(terms, "|")
+		filter["$or"] = bson.A{
+			bson.D{{"fullName", primitive.Regex{Pattern: regexp, Options: "i"}}},
+			bson.D{{"socialName", primitive.Regex{Pattern: regexp, Options: "i"}}},
+		}
 	}
 	if notIncludeUserIDList != nil && len(notIncludeUserIDList) > 0 {
 		nin := make(map[string]interface{})

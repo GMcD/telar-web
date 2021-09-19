@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"path/filepath"
 
-	appConfig "github.com/GMcD/telar-web/micros/storage/config"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 
@@ -25,7 +24,6 @@ func UploadeHandle(c *fiber.Ctx) error {
 			"Can not get current user"))
 	}
 
-	storageConfig := &appConfig.StorageConfig
 	log.Info("Hit upload endpoint by userId : %v", currentUser.UserID)
 
 	// params from /storage/:uid/:dir
@@ -70,6 +68,7 @@ func UploadeHandle(c *fiber.Ctx) error {
 	log.Info("Object Path: %s", s3Path)
 
 	//TODO: this hard codes the s3 path to frontend, rather than routing through the API
+	// storageConfig := &appConfig.StorageConfig
 	prettyURL := "/function" // utils.GetPrettyURLf(storageConfig.BaseRoute)
 	downloadURL := fmt.Sprintf("%s/%s/%s/%s", *coreSetting.AppConfig.Gateway+prettyURL,
 		currentUser.UserID, dirName, fileNameWithExtension)
