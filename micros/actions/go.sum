@@ -1,10 +1,10 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c h1:f89fE2vnsAVgn1qg5rvbswtx3JxfnteaLuaLnyP1I00=
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJzH42Qrwe3EjL4tqW0be8o6/KZlnGDb7k5ui/M=
-github.com/GMcD/telar-core v0.1.21 h1:NiJQvB/CBj6Z4NTXG4LDuhP0bd2D4PVwy1Ef1B8xQl0=
-github.com/GMcD/telar-core v0.1.21/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
-github.com/GMcD/telar-web v0.1.104 h1:xwC4h8GVQd8XHmEsSat3zcSgz2GEfLiL0u/QA/aZb58=
-github.com/GMcD/telar-web v0.1.104/go.mod h1:/GrYK1I272uGtbxARTY9DezNPmV2vFzmr9gvnOOQnso=
+github.com/GMcD/telar-core v0.1.30 h1:6KOX1ZPp0+C3F5X157LSa8OQ6DhOr4zaxJ8fsVYcQ1o=
+github.com/GMcD/telar-core v0.1.30/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
+github.com/GMcD/telar-web v0.1.121 h1:ROFm5/4tF4eJ0LhlxMFA8vRRB10I9/ebYwBnPGgrqq0=
+github.com/GMcD/telar-web v0.1.121/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
 github.com/MicahParks/keyfunc v0.3.2 h1:pv+bvbuLLhwBImjhOnk3CjK2uNyPnF0CbxlZPJiFHBs=
 github.com/MicahParks/keyfunc v0.3.2/go.mod h1:9gVJUF41JO0J6argCFDhvP7dgpa/vG+nWK3jnxlQSMU=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de h1:jiPEvtW8VT0KwJxRyjW2VAAvlssjj9SfecsQ3Vgv5tk=
