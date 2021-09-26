@@ -18,7 +18,7 @@ func loadConfigFromEnvironment() {
 
 	base_route, ok := os.LookupEnv("base_route")
 	if ok {
-		ProfileConfig.BaseRoute = base_route
+		CollectiveConfig.BaseRoute = base_route
 		log.Printf("[INFO]: Base route information loaded from env.")
 	}
 
@@ -28,7 +28,7 @@ func loadConfigFromEnvironment() {
 		if errParseDebug != nil {
 			log.Printf("[ERROR]: Query Pretty URL information loading error: %s", errParseDebug.Error())
 		}
-		ProfileConfig.QueryPrettyURL = parsedQueryPrettyURL
+		CollectiveConfig.QueryPrettyURL = parsedQueryPrettyURL
 		log.Printf("[INFO]: Query Pretty URL information loaded from env.")
 	}
 
@@ -38,7 +38,7 @@ func loadConfigFromEnvironment() {
 		if errParseDebug != nil {
 			log.Printf("[ERROR]: Debug information loading error: %s", errParseDebug.Error())
 		}
-		ProfileConfig.Debug = parsedDebug
+		CollectiveConfig.Debug = parsedDebug
 		log.Printf("[INFO]: Debug information loaded from env.")
 	}
 }

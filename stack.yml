@@ -104,6 +104,27 @@ functions:
       telar.dev.repo: telar-web
     annotations:
       linkerd.io/inject: disabled
+  collective:
+    lang: golang-middleware
+    handler: ./micros/collective
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/collective:v2.2.127
+    fprocess: ""
+    environment: {}
+    secrets:
+    - telar-web-secrets
+    environment_file:
+    - config/app_config.yml
+    - config/profile_config.yml
+    - config/server_web_config.yml
+    - config/gateway_config.yml
+    labels:
+      com.openfaas.scale.zero: "false"
+      openfaas-cloud: "1"
+      role: ts-system
+      telar.dev.appID: my-social-network
+      telar.dev.repo: telar-web
+    annotations:
+      linkerd.io/inject: disabled
   setting:
     lang: golang-middleware
     handler: ./micros/setting

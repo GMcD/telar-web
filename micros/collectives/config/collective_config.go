@@ -8,5 +8,5 @@ type (
 	}
 )
 
-// ProfileConfig holds the configuration values from profile-config.yml file
-var ProfileConfig Configuration
+// CollectiveConfig holds the configuration values from collectives_config.yml file
+var CollectiveConfig Configuration
