@@ -1,27 +1,42 @@
-package models
+package dto
 
 import (
 	"github.com/GMcD/telar-web/constants"
 	uuid "github.com/gofrs/uuid"
 )
 
-type UserProfileModel struct {
+type Location struct {
+	GeoJSONType string    `json:"type" bson:"type"`
+	Coordinates []float64 `json:"coordinates" bson:"coordinates"`
+}
+
+func NewLocation(lat, long float64) Location {
+	return Location{
+		"Point",
+		[]float64{lat, long},
+	}
+}
+
+type UserProfile struct {
 	ObjectId       uuid.UUID                     `json:"objectId" bson:"objectId"`
-	FullName       string                        `json:"fullName" bson:"fullName", validate:"max=50"`
-	SocialName     string                        `json:"socialName" bson:"socialName", validate:"max=100"`
-	Avatar         string                        `json:"avatar" bson:"avatar", validate:"max=5000"`
+	FullName       string                        `json:"fullName" bson:"fullName"`
+	SocialName     string                        `json:"socialName" bson:"socialName"`
+	Avatar         string                        `json:"avatar" bson:"avatar"`
 	Banner         string                        `json:"banner" bson:"banner"`
-	TagLine        string                        `json:"tagLine" bson:"tagLine", validate:"max=100"`
+	TagLine        string                        `json:"tagLine" bson:"tagLine"`
 	CreatedDate    int64                         `json:"created_date" bson:"created_date"`
 	LastUpdated    int64                         `json:"last_updated" bson:"last_updated"`
 	LastSeen       int64                         `json:"lastSeen" bson:"lastSeen"`
-	Email          string                        `json:"email" bson:"email", validate:"max=200"`
+	Email          string                        `json:"email" bson:"email"`
 	Birthday       int64                         `json:"birthday" bson:"birthday"`
-	WebUrl         string                        `json:"webUrl" bson:"webUrl", validate:"max=150"`
-	CompanyName    string                        `json:"companyName" bson:"companyName", validate:"max=100"`
-	Country        string                        `json:"country" bson:"country", validate:"max=100"`
+	WebUrl         string                        `json:"webUrl" bson:"webUrl"`
+	Country        string                        `json:"country" bson:"country"`
 	Address        string                        `json:"address" bson:"address"`
+	School         string                        `json:"school" bson:"school"`
+	LiveLocation   Location                      `json:"liveLocation" bson:"liveLocation"`
 	Phone          string                        `json:"phone" bson:"phone"`
+	Lang           string                        `json:"lang" bson:"lang"`
+	CompanyName    string                        `json:"companyName" bson:"companyName"`
 	VoteCount      int64                         `json:"voteCount" bson:"voteCount"`
 	ShareCount     int64                         `json:"shareCount" bson:"shareCount"`
 	FollowCount    int64                         `json:"followCount" bson:"followCount"`
@@ -30,7 +45,7 @@ type UserProfileModel struct {
 	FacebookId     string                        `json:"facebookId" bson:"facebookId"`
 	InstagramId    string                        `json:"instagramId" bson:"instagramId"`
 	TwitterId      string                        `json:"twitterId" bson:"twitterId"`
-	LinkedInId     string                        `json:"linkedInId"`
+	LinkedInId     string                        `json:"linkedInId" bson:"linkedInId"`
 	AccessUserList []string                      `json:"accessUserList" bson:"accessUserList"`
 	Permission     constants.UserPermissionConst `json:"permission" bson:"permission"`
 }
