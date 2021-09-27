@@ -1,7 +1,6 @@
 package dto
 
 import (
-	"github.com/GMcD/telar-web/constants"
 	uuid "github.com/gofrs/uuid"
 )
 
