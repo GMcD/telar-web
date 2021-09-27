@@ -48,7 +48,6 @@ type UpdateCollectiveQueryModel struct {
 
 const UpdateAllType = 0
 const UpdateGeneralType = 1
-const UpdateSocialInfoType = 2
 
 // getHeadersFromUserInfoReq
 func getHeadersFromUserInfoReq(info *UserInfoInReq) map[string][]string {
@@ -160,25 +159,6 @@ func getUpdateModel(c *fiber.Ctx) (interface{}, error) {
 		return nil, err
 	}
 
-	if query.UpdateType == UpdateSocialInfoType {
-		model := new(models.SocialInfoUpdateModel)
-		unmarshalErr := c.BodyParser(model)
-		if unmarshalErr != nil {
-			return nil, unmarshalErr
-		}
-
-		model.LastUpdated = utils.UTCNowUnix()
-
-		return model, nil
-	} else if query.UpdateType == UpdateGeneralType {
-		model := new(models.CollectiveGeneralUpdateModel)
-		unmarshalErr := c.BodyParser(model)
-		if unmarshalErr != nil {
-			return nil, unmarshalErr
-		}
-		model.LastUpdated = utils.UTCNowUnix()
-		return model, nil
-	}
 	model := new(models.CollectiveUpdateModel)
 	unmarshalErr := c.BodyParser(model)
 	if unmarshalErr != nil {
