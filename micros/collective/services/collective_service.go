@@ -26,7 +26,7 @@ func NewCollectiveService(db interface{}) (CollectiveService, error) {
 	case config.DB_MONGO:
 
 		mongodb := db.(mongodb.MongoDatabase)
-		ollectiveService.CollectiveRepo = mongoRepo.NewDataRepositoryMongo(mongodb)
+		collectiveService.CollectiveRepo = mongoRepo.NewDataRepositoryMongo(mongodb)
 
 	}
 	if collectiveService.CollectiveRepo == nil {

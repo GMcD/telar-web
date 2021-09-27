@@ -4,7 +4,7 @@ import (
 	uuid "github.com/gofrs/uuid"
 )
 
-type CollectivesModel struct {
+type Collective struct {
 	CollectiveIds []uuid.UUID `json:"collectiveIds" bson:"collectiveIds"`
 	Name          string      `json:"Name" bson:"Name", validate:"max=50"`
 	Avatar        string      `json:"avatar" bson:"avatar", validate:"max=500"`
