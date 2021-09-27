@@ -3,11 +3,8 @@ github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c h1:f89fE2vnsAVgn1
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJzH42Qrwe3EjL4tqW0be8o6/KZlnGDb7k5ui/M=
 github.com/GMcD/telar-core v0.1.30 h1:6KOX1ZPp0+C3F5X157LSa8OQ6DhOr4zaxJ8fsVYcQ1o=
 github.com/GMcD/telar-core v0.1.30/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
-github.com/GMcD/telar-web v0.1.125/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
-github.com/GMcD/telar-web v0.1.127 h1:2OFeipAr8X9ok8H3Is+3LLv1HH36kdEajsbH+/WK10E=
-github.com/GMcD/telar-web v0.1.127/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
-github.com/GMcD/telar-web/micros/profile v0.0.0-20210927121131-5bdd7114504a h1:KsQDWSNk2hfpK7OVF4Irh8nrMfzgRD6OS6vWZwtzjvo=
-github.com/GMcD/telar-web/micros/profile v0.0.0-20210927121131-5bdd7114504a/go.mod h1:mEJEHaClyII/8TyqOm760T18B3sPEFrQDYJXA3KnFxM=
+github.com/GMcD/telar-web v0.1.128 h1:gjKscALmPc7oWCFCNEf17ifpEh3JMm/S5KoypYyEaPM=
+github.com/GMcD/telar-web v0.1.128/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
 github.com/MicahParks/keyfunc v0.3.2 h1:pv+bvbuLLhwBImjhOnk3CjK2uNyPnF0CbxlZPJiFHBs=
 github.com/MicahParks/keyfunc v0.3.2/go.mod h1:9gVJUF41JO0J6argCFDhvP7dgpa/vG+nWK3jnxlQSMU=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de h1:jiPEvtW8VT0KwJxRyjW2VAAvlssjj9SfecsQ3Vgv5tk=
