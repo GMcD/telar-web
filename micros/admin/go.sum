@@ -42,8 +42,8 @@ github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJz
 github.com/GMcD/telar-core v0.1.30 h1:6KOX1ZPp0+C3F5X157LSa8OQ6DhOr4zaxJ8fsVYcQ1o=
 github.com/GMcD/telar-core v0.1.30/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
 github.com/GMcD/telar-web v0.1.98/go.mod h1:2t8V8kxG0uQI8HiKiIKzTXe663PYSebExGKzo+/QZ70=
-github.com/GMcD/telar-web v0.1.122 h1:nHsUZBOwpPvRP3BQk7eNE/CI5PSjUq5jxlA1cVGrYYE=
-github.com/GMcD/telar-web v0.1.122/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
+github.com/GMcD/telar-web v0.1.125 h1:LnR4CMG/e0MOnPaYMnZORxaHWoR49hcoNp4tBqroiBU=
+github.com/GMcD/telar-web v0.1.125/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
 github.com/GMcD/telar-web/micros/auth v0.0.0-20210911090803-a6e62e0844bd h1:9Jy3UR1+hMManaqQ8f3u4H6uNEzEZmirbRFy9A8jH54=
 github.com/GMcD/telar-web/micros/auth v0.0.0-20210911090803-a6e62e0844bd/go.mod h1:W6KwkK7hWccdi1asy9jVjngKkqzM/EFvdHVRFg/tP7k=
 github.com/GMcD/telar-web/micros/setting v0.0.0-20210911090803-a6e62e0844bd h1:KG5aGebHh5Ph1D2BAVV5cT5IwrnrxIJ5frwflc76myw=
