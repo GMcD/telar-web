@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	models "github.com/GMcD/telar-web/micros/collectives/models"
+	models "github.com/GMcD/telar-web/micros/collective/models"
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
@@ -24,7 +24,7 @@ type Action struct {
 }
 
 type UserInfoInReq struct {
-	UserId      uuid.UUID `json:"collectiveId"`
+	UserId      uuid.UUID `json:"userId"`
 	Username    string    `json:"username"`
 	Avatar      string    `json:"avatar"`
 	DisplayName string    `json:"displayName"`

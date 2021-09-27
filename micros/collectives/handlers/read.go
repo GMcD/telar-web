@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/GMcD/telar-web/micros/collectives/database"
-	models "github.com/GMcD/telar-web/micros/collectives/models"
-	service "github.com/GMcD/telar-web/micros/collectives/services"
+	"github.com/GMcD/telar-web/micros/collective/database"
+	models "github.com/GMcD/telar-web/micros/collective/models"
+	service "github.com/GMcD/telar-web/micros/collective/services"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
@@ -19,252 +19,128 @@ type MembersPayload struct {
 }
 
 // ReadDtoCollectiveHandle a function invocation
-func ReadDtoCollectivesHandle(c *fiber.Ctx) error {
+func ReadDtoCollectiveHandle(c *fiber.Ctx) error {
 
-	userId := c.Params("userId")
-	log.Info("Read dto collective by userId %s", userId)
+	collectiveId := c.Params("collectiveId")
+	log.Info("Read dto collective by collectiveId %s", userId)
 	userUUID, uuidErr := uuid.FromString(userId)
 	if uuidErr != nil {
 		log.Error("Parse UUID %s ", uuidErr.Error())
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("parseUUIDError", "Can not parse user id!"))
 	}
 	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
+		log.Error("NewCollectiveService %s", serviceErr.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 	//
-	foundUser, err := userProfileService.FindByUserId(userUUID)
+	foundCollective, err := collectiveService.FindByCollectiveId(userUUID)
 	if err != nil {
-		log.Error("FindByUserId %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByUserId", "Error happened while finding user profile!"))
+		log.Error("FindByCollectiveId %s", err.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))
 	}
 
-	if foundUser == nil {
-		log.Error("Could not find user " + userUUID.String())
-		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
+	if foundCollective == nil {
+		log.Error("Could not find collecitive " + collectiveUUID.String())
+		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundCollective", "Error happened while finding collective!"))
 	}
 
-	return c.JSON(foundUser)
+	return c.JSON(foundCollective)
 
 }
 
 // ReadProfileHandle a function invocation
-func ReadProfileHandle(c *fiber.Ctx) error {
+func ReadCollectiveHandle(c *fiber.Ctx) error {
 
-	userId := c.Params("userId")
-	if userId == "" {
-		errorMessage := fmt.Sprintf("User Id is required!")
+	collectiveId := c.Params("collectiveId")
+	if collectiveId == "" {
+		errorMessage := fmt.Sprintf("collective Id is required!")
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdRequired", errorMessage))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdRequired", errorMessage))
 	}
-	userUUID, uuidErr := uuid.FromString(userId)
+	collectiveUUID, uuidErr := uuid.FromString(collectiveId)
 	if uuidErr != nil {
 		log.Error("Parse UUID %s ", uuidErr.Error())
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("parseUUIDError", "Can not parse user id!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("parseUUIDError", "Can not parse collective id!"))
 	}
 
 	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
+		log.Error("NewCollectiveService %s", serviceErr.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 
-	foundUser, err := userProfileService.FindByUserId(userUUID)
+	foundCollective, err := collectiveService.FindByCollectiveId(collectiveUUID)
 	if err != nil {
-		log.Error("FindByUserId %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByUserId", "Error happened while finding user profile!"))
+		log.Error("FindBycCllectiveId %s", err.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))
 	}
 
-	if foundUser == nil {
-		log.Error("Could not find user " + userUUID.String())
-		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
+	if foundCollective == nil {
+		log.Error("Could not find collective " + collectiveUUID.String())
+		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundCollective", "Error happened while finding collective!"))
 	}
 
-	profileModel := models.MyProfileModel{
-		ObjectId:       foundUser.ObjectId,
-		FullName:       foundUser.FullName,
-		SocialName:     foundUser.SocialName,
-		Avatar:         foundUser.Avatar,
-		Banner:         foundUser.Banner,
-		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
-		FollowCount:    foundUser.FollowCount,
-		FollowerCount:  foundUser.FollowerCount,
-		WebUrl:         foundUser.WebUrl,
-		CompanyName:    foundUser.CompanyName,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
-		AccessUserList: foundUser.AccessUserList,
-		Permission:     foundUser.Permission,
-		CreatedDate:    foundUser.CreatedDate,
+	collectiveModel := models.MyCollectiveModel{
+		ObjectId:      foundCollective.ObjectId,
+		Name:          foundCollective.Name,
+		Avatar:        foundCollective.Avatar,
+		Banner:        foundCollective.Banner,
+		FollowerCount: foundCollective.FollowerCount,
+		PostCound:     foundCollective.PostCount,
+		CreatedDate:   foundCollective.CreatedDate,
 	}
 
-	return c.JSON(profileModel)
+	return c.JSON(collectiveModel)
 
 }
 
-// GetBySocialName get user profile by social name
-func GetBySocialName(c *fiber.Ctx) error {
-
-	socialName := c.Params("name")
-	if socialName == "" {
-		errorMessage := fmt.Sprintf("Social name is required!")
-		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("socialNameRequired", errorMessage))
-	}
-
-	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
-	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
-	}
-
-	foundUser, err := userProfileService.FindBySocialName(socialName)
-	if err != nil {
-		log.Error("findBySocialName %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findBySocialName", "Error happened while finding user profile!"))
-	}
-
-	if foundUser == nil {
-		log.Error("Could not find user " + socialName)
-		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
-	}
-
-	profileModel := models.MyProfileModel{
-		ObjectId:       foundUser.ObjectId,
-		FullName:       foundUser.FullName,
-		SocialName:     foundUser.SocialName,
-		Avatar:         foundUser.Avatar,
-		Banner:         foundUser.Banner,
-		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
-		FollowCount:    foundUser.FollowCount,
-		FollowerCount:  foundUser.FollowerCount,
-		WebUrl:         foundUser.WebUrl,
-		CompanyName:    foundUser.CompanyName,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
-		AccessUserList: foundUser.AccessUserList,
-		Permission:     foundUser.Permission,
-		CreatedDate:    foundUser.CreatedDate,
-	}
-
-	return c.JSON(profileModel)
-
-}
-
-// ReadMyProfileHandle a function invocation to read authed user profile
-func ReadMyProfileHandle(c *fiber.Ctx) error {
-
-	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
-	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
-	}
-
-	currentUser, ok := c.Locals("user").(types.UserContext)
-	if !ok {
-		log.Error("[ReadMyProfileHandle] Can not get current user")
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("invalidCurrentUser",
-			"Can not get current user"))
-	}
-
-	foundUser, err := userProfileService.FindByUserId(currentUser.UserID)
-	if err != nil {
-		log.Error("FindByUserId %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByUserId", "Error happened while finding user profile!"))
-	}
-	if foundUser == nil {
-		log.Error("Could not find user " + currentUser.UserID.String())
-		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
-	}
-
-	profileModel := models.MyProfileModel{
-		ObjectId:       foundUser.ObjectId,
-		FullName:       foundUser.FullName,
-		SocialName:     foundUser.SocialName,
-		Avatar:         foundUser.Avatar,
-		Banner:         foundUser.Banner,
-		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		CompanyName:    foundUser.CompanyName,
-		Country:        foundUser.Country,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
-		Phone:          foundUser.Phone,
-		WebUrl:         foundUser.WebUrl,
-		FollowCount:    foundUser.FollowCount,
-		FollowerCount:  foundUser.FollowerCount,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
-		AccessUserList: foundUser.AccessUserList,
-		Permission:     foundUser.Permission,
-	}
-	return c.JSON(profileModel)
-
-}
-
-// DispatchProfilesHandle a function invocation to read authed user profile
-func DispatchCollectivesHandle(c *fiber.Ctx) error {
+// DispatchCollectiveHandle a function invocation to read authed user profile
+func DispatchCollectiveHandle(c *fiber.Ctx) error {
 
 	// Parse model object
-	model := new(models.DispatchCollectivesModel)
+	model := new(models.DispatchCollectiveModel)
 	if err := c.BodyParser(model); err != nil {
-		errorMessage := fmt.Sprintf("Unmarshal  models.DispatchCollectivesModel array %s", err.Error())
+		errorMessage := fmt.Sprintf("Unmarshal  models.DispatchCollectiveModel array %s", err.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/dispatchCollectivesModelParser", "Error happened while parsing model!"))
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/dispatchCollectiveModelParser", "Error happened while parsing model!"))
 	}
 
-	if len(model.UserIds) == 0 {
-		errorMessage := "UserIds is required!"
+	if len(model.CollectiveIds) == 0 {
+		errorMessage := "CollectiveIds are required!"
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdsRequired", errorMessage))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdsRequired", errorMessage))
 	}
 
 	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
+		log.Error("NewCollectiveService %s", serviceErr.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 
-	foundUsers, err := userProfileService.FindProfileByUserIds(model.UserIds)
+	foundCollectives, err := collectiveService.FindCollectiveByUserIds(model.CollectiveIds)
 	if err != nil {
-		log.Error("FindProfileByUserIds %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findProfileByUserIds", "Error happened while finding users profile!"))
+		log.Error("FindCollectiveByCollectiveIds %s", err.Error())
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findCollectiveByCollectiveIds", "Error happened while finding collectives!"))
 	}
 
-	mappedUsers := make(map[string]interface{})
-	for _, v := range foundUsers {
-		mappedUser := make(map[string]interface{})
-		mappedUser["userId"] = v.ObjectId
-		mappedUser["fullName"] = v.FullName
-		mappedUser["socialName"] = v.SocialName
-		mappedUser["avatar"] = v.Avatar
-		mappedUser["banner"] = v.Banner
-		mappedUser["tagLine"] = v.TagLine
-		mappedUser["lastSeen"] = v.LastSeen
-		mappedUser["createdDate"] = v.CreatedDate
-		mappedUsers[v.ObjectId.String()] = mappedUser
+	mappedCollectives := make(map[string]interface{})
+	for _, v := range foundCollectives {
+		mappedCollective := make(map[string]interface{})
+		mappedCollective["collectiveId"] = v.ObjectId
+		mappedCollective["name"] = v.Name
+		mappedCollective["avatar"] = v.Avatar
+		mappedCollective["banner"] = v.Banner
+		mappedCollective["lastSeen"] = v.LastSeen
+		mappedCollective["createdDate"] = v.CreatedDate
+		mappedCollective[v.ObjectId.String()] = mappedUser
 	}
 
 	actionRoomPayload := &MembersPayload{
-		Users: mappedUsers,
+		Collectives: mappedCollectives,
 	}
 
 	activeRoomAction := Action{
@@ -274,7 +150,7 @@ func DispatchCollectivesHandle(c *fiber.Ctx) error {
 
 	currentUser, ok := c.Locals("user").(types.UserContext)
 	if !ok {
-		log.Warn("[DispatchProfilesHandle] Can not get current user")
+		log.Warn("[DispatchCollectiveHandle] Can not get current user")
 		currentUser = types.UserContext{}
 	}
 	log.Info("Current USER %v", currentUser)
@@ -293,30 +169,30 @@ func DispatchCollectivesHandle(c *fiber.Ctx) error {
 
 }
 
-// GetProfileByIds a function invocation to profiles by ids
-func GetCollectivesByIds(c *fiber.Ctx) error {
+// GetCollectiveByIds a function invocation to profiles by ids
+func GetCollectiveByIds(c *fiber.Ctx) error {
 
 	// Parse model object
-	model := new(models.GetCollectivesModel)
+	model := new(models.GetCollectiveModel)
 	if err := c.BodyParser(model); err != nil {
-		errorMessage := fmt.Sprintf("Unmarshal  models.GetCollectivesModel array %s", err.Error())
+		errorMessage := fmt.Sprintf("Unmarshal  models.GetCollectiveModel array %s", err.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/getCollectivesModelParser", "Error happened while parsing model!"))
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/getCollectiveModelParser", "Error happened while parsing model!"))
 	}
 
 	// Create service
-	collectivesService, serviceErr := service.NewCollectivesService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		log.Error("NewCollectivesService %s", serviceErr.Error())
+		log.Error("NewCollectiveService %s", serviceErr.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 
-	foundUsers, err := collectivesService.FindCollectivesCollectiveIds(model.CollectiveIds)
+	foundCollective, err := collectiveService.FindCollectiveIds(model.CollectiveIds)
 	if err != nil {
 		log.Error("FindByCollectiveId %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))
 	}
 
-	return c.JSON(foundCollectives)
+	return c.JSON(foundCollective)
 
 }

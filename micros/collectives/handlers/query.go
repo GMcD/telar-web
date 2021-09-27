@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/GMcD/telar-web/micros/collectives/database"
-	service "github.com/GMcD/telar-web/micros/profile/services"
+	"github.com/GMcD/telar-web/micros/collective/database"
+	service "github.com/GMcD/telar-web/micros/collective/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
@@ -18,7 +18,7 @@ type CollectiveQueryModel struct {
 	NotInclude []uuid.UUID `query:"nin"`
 }
 
-// QueryUserProfileHandle handle queru on userProfile
+// QueryCollectiveHandle handle query on collective
 func QueryCollectiveHandle(c *fiber.Ctx) error {
 
 	// Create service

@@ -1,7 +1,7 @@
 package service
 
 const (
-	userProfileCollectionName = "userProfile"
+	collectiveCollectionName = "collective"
 )
 
 const (

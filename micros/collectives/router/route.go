@@ -6,7 +6,7 @@
 package router
 
 import (
-	"github.com/GMcD/telar-web/micros/collectives/handlers"
+	"github.com/GMcD/telar-web/micros/collective/handlers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/middleware/authcookie"

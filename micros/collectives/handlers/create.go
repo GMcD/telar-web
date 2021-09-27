@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/GMcD/telar-web/micros/collectives/database"
-	"github.com/GMcD/telar-web/micros/collectives/dto"
-	service "github.com/GMcD/telar-web/micros/collectives/services"
+	"github.com/GMcD/telar-web/micros/collective/database"
+	"github.com/GMcD/telar-web/micros/collective/dto"
+	service "github.com/GMcD/telar-web/micros/collective/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/red-gold/telar-core/pkg/log"
 	utils "github.com/red-gold/telar-core/utils"

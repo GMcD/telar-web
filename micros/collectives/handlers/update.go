@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/GMcD/telar-web/micros/profile/database"
-	models "github.com/GMcD/telar-web/micros/profile/models"
-	service "github.com/GMcD/telar-web/micros/profile/services"
+	"github.com/GMcD/telar-web/micros/collective/database"
+	models "github.com/GMcD/telar-web/micros/collective/models"
+	service "github.com/GMcD/telar-web/micros/collective/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
@@ -15,92 +15,22 @@ import (
 	utils "github.com/red-gold/telar-core/utils"
 )
 
-// UpdateProfileHandle a function invocation
-func UpdateProfileHandle(c *fiber.Ctx) error {
-
-	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
-	if serviceErr != nil {
-		log.Error("NewUserProfileService %s", serviceErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
-	}
-
-	model, unmarshalErr := getUpdateModel(c)
-	if unmarshalErr != nil {
-		errorMessage := fmt.Sprintf("Error while un-marshaling ProfileUpdateModel: %s",
-			unmarshalErr.Error())
-		log.Error(errorMessage)
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/parseProfileUpdateModel", "Error while parsing body"))
-
-	}
-	log.Info("model %v", model)
-
-	currentUser, ok := c.Locals("user").(types.UserContext)
-	if !ok {
-		log.Error("[UpdateProfileHandle] Can not get current user")
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("invalidCurrentUser",
-			"Can not get current user"))
-	}
-
-	log.Info("Update profile %s - %v", currentUser.UserID, model)
-	err := userProfileService.UpdateUserProfileById(currentUser.UserID, model)
-	if err != nil {
-		log.Error("Could not update user profile! %s", err.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Could not update user profile!"))
-	}
-
-	return c.SendStatus(http.StatusOK)
-
-}
-
-// UpdateLastSeen a function invocation
-func UpdateLastSeen(c *fiber.Ctx) error {
-
-	model := new(models.UpdateLastSeenModel)
-
-	unmarshalErr := c.BodyParser(model)
-	if unmarshalErr != nil {
-		errorMessage := fmt.Sprintf("Unmarshal models.UpdateLastSeenModel %s",
-			unmarshalErr.Error())
-		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("bodyParserUpdateLastSeenModel", "Could not parse UpdateLastSeenModel!"))
-	}
-
-	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
-	if serviceErr != nil {
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userProfileService", "Internal error happened while creating userProfileService!"))
-	}
-
-	err := userProfileService.UpdateLastSeenNow(model.UserId)
-	if err != nil {
-		errorMessage := fmt.Sprintf("Update last seen %s",
-			err.Error())
-		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("updateLastSeen", "Error happened while updating last seen"))
-
-	}
-
-	return c.SendStatus(http.StatusOK)
-
-}
-
 // IncreaseFollowCount a function invocation
-func IncreaseFollowCount(c *fiber.Ctx) error {
+func IncreasePostCount(c *fiber.Ctx) error {
 
 	// params from /follow/inc/:inc/:userId
-	userId := c.Params("userId")
-	if userId == "" {
-		errorMessage := fmt.Sprintf("User Id is required!")
+	collectiveId := c.Params("collectiveId")
+	if collectiveId == "" {
+		errorMessage := fmt.Sprintf("Collective Id is required!")
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdRequired", errorMessage))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdRequired", errorMessage))
 	}
 
-	userUUID, uuidErr := uuid.FromString(userId)
+	collectiveUUID, uuidErr := uuid.FromString(collectiveId)
 	if uuidErr != nil {
 		errorMessage := fmt.Sprintf("UUID Error %s", uuidErr.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdIsNotValid", "Post id is not valid!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdIsNotValid", "Post id is not valid!"))
 	}
 
 	incParam := c.Params("inc")
@@ -112,17 +42,17 @@ func IncreaseFollowCount(c *fiber.Ctx) error {
 	}
 
 	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userProfileService", "Internal error happened while creating userProfileService!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/collectiveService", "Internal error happened while creating collectiveService!"))
 	}
 
-	err = userProfileService.IncreaseFollowCount(userUUID, inc)
+	err = collectiveService.IncreasePostCount(collectiveUUID, inc)
 	if err != nil {
-		errorMessage := fmt.Sprintf("Update follow count %s",
+		errorMessage := fmt.Sprintf("Update post count %s",
 			err.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("updateFollowCount", "Error happened while updating follow count!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("updatePostCount", "Error happened while updating post count!"))
 
 	}
 
@@ -134,18 +64,18 @@ func IncreaseFollowCount(c *fiber.Ctx) error {
 func IncreaseFollowerCount(c *fiber.Ctx) error {
 
 	// params from /follower/inc/:inc/:userId
-	userId := c.Params("userId")
-	if userId == "" {
-		errorMessage := fmt.Sprintf("User Id is required!")
+	collectiveId := c.Params("collectiveId")
+	if collectiveId == "" {
+		errorMessage := fmt.Sprintf("collective Id is required!")
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdRequired", errorMessage))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdRequired", errorMessage))
 	}
 
-	userUUID, uuidErr := uuid.FromString(userId)
+	collectiveUUID, uuidErr := uuid.FromString(collectiveId)
 	if uuidErr != nil {
 		errorMessage := fmt.Sprintf("UUID Error %s", uuidErr.Error())
 		log.Error(errorMessage)
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("userIdIsNotValid", "Post id is not valid!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("collectiveIdIsNotValid", "Post id is not valid!"))
 	}
 
 	incParam := c.Params("inc")
@@ -157,12 +87,12 @@ func IncreaseFollowerCount(c *fiber.Ctx) error {
 	}
 
 	// Create service
-	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
 	if serviceErr != nil {
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/userProfileService", "Internal error happened while creating userProfileService!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("internal/collectiveService", "Internal error happened while creating collectiveService!"))
 	}
 
-	err = userProfileService.IncreaseFollowerCount(userUUID, inc)
+	err = collectiveService.IncreaseFollowerCount(collectiveUUID, inc)
 	if err != nil {
 		errorMessage := fmt.Sprintf("Update follower count %s",
 			err.Error())
