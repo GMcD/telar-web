@@ -6,14 +6,13 @@ import (
 	"strconv"
 
 	"github.com/GMcD/telar-web/micros/collective/database"
-	models "github.com/GMcD/telar-web/micros/collective/models"
 	service "github.com/GMcD/telar-web/micros/collective/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/red-gold/telar-core/pkg/log"
-	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
 )
+
 
 // IncreaseFollowCount a function invocation
 func IncreasePostCount(c *fiber.Ctx) error {

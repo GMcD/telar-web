@@ -218,3 +218,8 @@ func (s CollectiveServiceImpl) IncreaseFollowCount(objectId uuid.UUID, inc int) 
 func (s CollectiveServiceImpl) IncreaseFollowerCount(objectId uuid.UUID, inc int) error {
 	return s.Increment(objectId, "followerCount", inc)
 }
+
+// IncreasePostCount increment post count of collective
+func (s CollectiveServiceImpl) IncreasePostCount(objectId uuid.UUID, inc int) error {
+	return s.Increment(objectId, "postCount", inc )
+}

@@ -17,4 +17,5 @@ type CollectiveService interface {
 	CreateCollectiveIndex(indexes map[string]interface{}) error
 	IncreaseFollowCount(objectId uuid.UUID, inc int) error
 	IncreaseFollowerCount(objectId uuid.UUID, inc int) error
+	IncreasePostCount(collectiveUUID uuid.UUID, inc int) error
 }

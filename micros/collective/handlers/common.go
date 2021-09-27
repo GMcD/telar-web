@@ -171,7 +171,7 @@ func getUpdateModel(c *fiber.Ctx) (interface{}, error) {
 
 		return model, nil
 	} else if query.UpdateType == UpdateGeneralType {
-		model := new(models.CollectivesGeneralUpdateModel)
+		model := new(models.CollectiveGeneralUpdateModel)
 		unmarshalErr := c.BodyParser(model)
 		if unmarshalErr != nil {
 			return nil, unmarshalErr
@@ -179,7 +179,7 @@ func getUpdateModel(c *fiber.Ctx) (interface{}, error) {
 		model.LastUpdated = utils.UTCNowUnix()
 		return model, nil
 	}
-	model := new(models.CollectivesUpdateModel)
+	model := new(models.CollectiveUpdateModel)
 	unmarshalErr := c.BodyParser(model)
 	if unmarshalErr != nil {
 		return nil, unmarshalErr
