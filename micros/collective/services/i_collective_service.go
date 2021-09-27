@@ -13,7 +13,6 @@ type CollectiveService interface {
 	FindCollectiveByCollectiveIds(collectiveIds []uuid.UUID) ([]dto.Collective, error)
 	FindByCollective(collectiveId uuid.UUID) (*dto.Collective, error)
 	DeleteCollective(filter interface{}) error
-	DeleteCollectiveProfile(filter interface{}) error
 	FindByCollectiveName(name string) (*dto.Collective, error)
 	CreateCollectiveIndex(indexes map[string]interface{}) error
 	IncreaseFollowCount(objectId uuid.UUID, inc int) error
