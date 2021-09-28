@@ -13,7 +13,6 @@ import (
 	utils "github.com/red-gold/telar-core/utils"
 )
 
-
 // IncreaseFollowCount a function invocation
 func IncreasePostCount(c *fiber.Ctx) error {
 
