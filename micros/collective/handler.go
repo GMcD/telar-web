@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	micros "github.com/GMcD/telar-web/micros"
-	"github.com/GMcD/telar-web/micros/profile/database"
-	"github.com/GMcD/telar-web/micros/profile/router"
+	"github.com/GMcD/telar-web/micros/collective/database"
+	"github.com/GMcD/telar-web/micros/collective/router"
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
