@@ -67,7 +67,5 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/dto/ids", authHMACMiddleware(false), handlers.GetCollectiveByIds)
 	app.Put("/follow/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreasePostCount)
 	app.Put("/follower/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreaseFollowerCount)
-
-	// Make a new route to create collectives(how we auth this?..)
-	app.Post("/dto2", append(hmacCookieHandlers, handlers.CreateCollectiveHandle)...)
+	
 }
