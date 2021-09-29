@@ -63,3 +63,30 @@ func CreateDtoCollectiveHandle(c *fiber.Ctx) error {
 
 	return c.SendStatus(http.StatusOK)
 }
+
+func CreateCollectiveHandle(c *fiber.Ctx) error {
+
+	// Create service
+	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
+	if serviceErr != nil {
+		errorMessage := fmt.Sprintf("Collective service Error %s", serviceErr.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
+	}
+
+	model := new(dto.Collective)
+	err := c.BodyParser(model)
+	if err != nil {
+		errorMessage := fmt.Sprintf("parse collective model %s", err.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("parseCollectiveModel", "Error happened while parsing model!"))
+	}
+
+	if err = collectiveService.SaveCollective(model); err != nil {
+		errorMessage := fmt.Sprintf("Create collective error %s", err.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("createCollectiveError", "Error happened while saving collective!"))
+	}
+	return c.SendStatus(http.StatusOK)
+
+}

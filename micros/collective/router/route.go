@@ -67,4 +67,5 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/dto/ids", authHMACMiddleware(false), handlers.GetCollectiveByIds)
 	app.Put("/follow/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreasePostCount)
 	app.Put("/follower/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreaseFollowerCount)
+
 }

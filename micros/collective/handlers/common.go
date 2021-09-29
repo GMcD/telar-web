@@ -5,15 +5,15 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"github.com/GMcD/telar-web/micros/collective/models"
+	"github.com/red-gold/telar-core/pkg/parser"
 	"io/ioutil"
 	"net/http"
 
-	models "github.com/GMcD/telar-web/micros/collective/models"
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
-	"github.com/red-gold/telar-core/pkg/parser"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
 )
