@@ -5,10 +5,11 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/GMcD/telar-web/micros/collective/models"
-	"github.com/red-gold/telar-core/pkg/parser"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/GMcD/telar-web/micros/collective/models"
+	"github.com/red-gold/telar-core/pkg/parser"
 
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
@@ -124,6 +125,8 @@ func functionCall(method string, bytesReq []byte, url string, header map[string]
 			httpReq.Header[k] = v
 		}
 	}
+
+	httpReq = utils.AddPolicies(httpReq)
 
 	c := http.Client{}
 	res, reqErr := c.Do(httpReq)
