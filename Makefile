@@ -25,7 +25,7 @@ help:		## Show this help.
 stack:		## Update ECR tags in stack.yml on main
 	git checkout main && \
 	if (( $$(git status --porcelain | wc -l) > 0 )); then \
-	    printf "$${GREEN}Module $${RED}ts-serverless$${GREEN} has changes, run $${CYAN}make commit <message>$${GREEN} first.$${NC}\n"; \
+	    printf "$${GREEN}Module $${RED}telar-web$${GREEN} has changes, run $${CYAN}make commit <message>$${GREEN} first.$${NC}\n"; \
 	    exit 1; \
 	fi && \
 	awk -F "." '/354455067292/ { printf $$1; for(i=2;i<NF;i++) printf FS$$i; print FS$$NF+1 } !/354455067292/ { print }' stack.yml > .stack.yml && mv .stack.yml stack.yml

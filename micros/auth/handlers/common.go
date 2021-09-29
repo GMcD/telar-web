@@ -19,6 +19,7 @@ import (
 	"github.com/alexellis/hmac"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
+	jwt "github.com/golang-jwt/jwt/v4"
 	coreConfig "github.com/red-gold/telar-core/config"
 	log "github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
