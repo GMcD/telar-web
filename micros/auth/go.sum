@@ -40,8 +40,8 @@ github.com/CloudyKit/jet/v6 v6.1.0/go.mod h1:d3ypHeIRNo2+XyqnGA8s+aphtcVpjP5hPwP
 github.com/Djarvur/go-err113 v0.0.0-20200511133814-5174e21577d5/go.mod h1:4UJr5HIiMZrwgkSPdsjy2uOQExX/WEILpIrO9UPGuXs=
 github.com/GMcD/telar-core v0.1.35 h1:VZE6vnjk30q1hMiqlWRDRAf8rItF65Y9EsxSukP6ox8=
 github.com/GMcD/telar-core v0.1.35/go.mod h1:coy7FISI+jhNghbq6fqHnWOYCQvtKfdR18gT7BgR/Y4=
-github.com/GMcD/telar-web v0.1.136 h1:moQJPxzY1BAj7mNcz/deHfEm98/wrSEI0eJA+lounWQ=
-github.com/GMcD/telar-web v0.1.136/go.mod h1:AnRvenFQJhd6Z/lG/9gx/bR37l4FfNXIWV6OLHx8IA8=
+github.com/GMcD/telar-web v0.1.137 h1:uGr6rdkgRn2dJedykZgaJbY1JiNk1m1/WLQAVH7Ip+Q=
+github.com/GMcD/telar-web v0.1.137/go.mod h1:q9FqoxN5QU/zAts7Jk5qUnIdATd1wX/rAaIVvj/iSuk=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
 github.com/Joker/hpp v1.0.0/go.mod h1:8x5n+M1Hp5hC0g8okX3sR3vFQwynaX/UgSOM9MeBKzY=
 github.com/Joker/jade v1.0.0/go.mod h1:efZIdO0py/LtcJRSa/j2WEklMSAw84WV0zZVMxNToB8=

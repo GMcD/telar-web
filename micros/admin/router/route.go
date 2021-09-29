@@ -11,6 +11,7 @@ import (
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/middleware/authcookie"
 	"github.com/red-gold/telar-core/middleware/authrole"
+	"github.com/red-gold/telar-core/utils"
 )
 
 // SetupRoutes func
