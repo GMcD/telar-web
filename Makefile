@@ -70,4 +70,4 @@ up:		## Run FaaS up
 up: login
 	for micro in $$(ls -d micros/*/); do pushd ./$${micro}; GOPRIVATE=github.com/GMcD go mod tidy; popd; done
 	echo "Running FaaS up..."
-	GOPRIVATE=github.com/GMcD faas up --build-arg GO111MODULE=on --filter ${ARGUMENT}
+	GOPRIVATE=github.com/GMcD faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}

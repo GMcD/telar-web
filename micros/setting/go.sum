@@ -1,8 +1,8 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/GMcD/telar-core v0.1.35 h1:VZE6vnjk30q1hMiqlWRDRAf8rItF65Y9EsxSukP6ox8=
 github.com/GMcD/telar-core v0.1.35/go.mod h1:coy7FISI+jhNghbq6fqHnWOYCQvtKfdR18gT7BgR/Y4=
-github.com/GMcD/telar-web v0.1.137 h1:uGr6rdkgRn2dJedykZgaJbY1JiNk1m1/WLQAVH7Ip+Q=
-github.com/GMcD/telar-web v0.1.137/go.mod h1:q9FqoxN5QU/zAts7Jk5qUnIdATd1wX/rAaIVvj/iSuk=
+github.com/GMcD/telar-web v0.1.138 h1:GGJ1kdZjUAcjiGlgYm/DxB+Nwpm0LxUozHZbElkjLT8=
+github.com/GMcD/telar-web v0.1.138/go.mod h1:q9FqoxN5QU/zAts7Jk5qUnIdATd1wX/rAaIVvj/iSuk=
 github.com/MicahParks/keyfunc v0.8.2 h1:C5T/ixarxdwFVDHh10+UwP6Bi2GIlvs9IwICg9kCs/I=
 github.com/MicahParks/keyfunc v0.8.2/go.mod h1:yGAHz3pCqcMHdEbqZWv5kvY9p5KXO/c38QW3018ax74=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de h1:jiPEvtW8VT0KwJxRyjW2VAAvlssjj9SfecsQ3Vgv5tk=

@@ -7,7 +7,6 @@ go 1.16
 require (
 	github.com/GMcD/telar-web v0.1.138
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.3
 	github.com/gofiber/fiber/v2 v2.10.0
 	github.com/gofiber/template v1.6.9
