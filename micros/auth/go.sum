@@ -42,8 +42,8 @@ github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c h1:f89fE2vnsAVgn1
 github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c/go.mod h1:7sLhWJzH42Qrwe3EjL4tqW0be8o6/KZlnGDb7k5ui/M=
 github.com/GMcD/telar-core v0.1.30 h1:6KOX1ZPp0+C3F5X157LSa8OQ6DhOr4zaxJ8fsVYcQ1o=
 github.com/GMcD/telar-core v0.1.30/go.mod h1:bmkWWp5lamNBfLvQVAFeEmUQ3dJ1SFD+6l0lUJvMbpA=
-github.com/GMcD/telar-web v0.1.133 h1:H2Bsd2bGVU1LUVf7cT2dxYjb9iYD7dX2chcHGR0KCa0=
-github.com/GMcD/telar-web v0.1.133/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
+github.com/GMcD/telar-web v0.1.134 h1:9n5VJ6asQF2RgTF4ixTPuTWocljv03R8kCjYV6uWFhg=
+github.com/GMcD/telar-web v0.1.134/go.mod h1:pncxp8Uzm9IZWyzNyhP/74fNYVSz7DhS1ycGpy3sefo=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
 github.com/Joker/hpp v1.0.0/go.mod h1:8x5n+M1Hp5hC0g8okX3sR3vFQwynaX/UgSOM9MeBKzY=
 github.com/Joker/jade v1.0.0/go.mod h1:efZIdO0py/LtcJRSa/j2WEklMSAw84WV0zZVMxNToB8=
