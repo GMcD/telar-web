@@ -5,7 +5,7 @@ replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.
 go 1.16
 
 require (
-	github.com/GMcD/telar-web v0.1.136
+	github.com/GMcD/telar-web v0.1.137
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.3
