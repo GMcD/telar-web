@@ -1,6 +1,6 @@
 module github.com/GMcD/telar-web
 
-replace github.com/red-gold/telar-core v0.1.10 => github.com/GMcD/telar-core v0.1.33
+replace github.com/red-gold/telar-core v0.1.10 => github.com/GMcD/telar-core v0.1.34
 
 go 1.16
 

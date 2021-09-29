@@ -11,8 +11,6 @@ import (
 	"github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/middleware/authcookie"
 	"github.com/red-gold/telar-core/middleware/authrole"
-
-	"github.com/GMcD/cognito-jwt/verify"
 )
 
 // SetupRoutes func
@@ -21,7 +19,7 @@ func SetupRoutes(app *fiber.App) {
 	// Middleware
 	authCookieMiddleware := authcookie.New(authcookie.Config{
 		JWTSecretKey: []byte(*config.AppConfig.PublicKey),
-		Authorizer:   verify.VerifyJWT,
+		Authorizer:   utils.VerifyJWT,
 	})
 	authRoleMiddleware := authrole.New(authrole.ConfigDefault)
 
