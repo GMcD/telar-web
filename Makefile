@@ -69,5 +69,9 @@ login:  	## ECR Docker Login
 up:		## Run FaaS up
 up: login
 	for micro in $$(ls -d micros/*/); do pushd ./$${micro}; GOPRIVATE=github.com/GMcD go mod tidy; popd; done
-	echo "Running FaaS up..."
+	# echo "Running FaaS build, push and deploy, seperately ..."
+	# GOPRIVATE=github.com/GMcD faas build --no-cache --build-arg GO111MODULE=on # --filter ${ARGUMENT}
+	# faas push
+	# faas deploy
+	echo "Running FaaS up, all together..."
 	GOPRIVATE=github.com/GMcD faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}

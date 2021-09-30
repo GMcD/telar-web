@@ -36,7 +36,7 @@ func functionCall(bytesReq []byte, url, method string) ([]byte, error) {
 	fmt.Printf("\ndigest: %s, header: %v \n", "sha1="+hex.EncodeToString(digest), types.HeaderHMACAuthenticate)
 	httpReq.Header.Add(types.HeaderHMACAuthenticate, "sha1="+hex.EncodeToString(digest))
 
-	utils.AddPolicies(httpReq)
+	// utils.AddPolicies(httpReq)
 
 	c := http.Client{}
 	res, reqErr := c.Do(httpReq)
