@@ -46,6 +46,9 @@ func ReadDtoProfileHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
 	}
 
+	log.Info("Help Me!")
+	c.Set("X-Help", "Me!")
+
 	return c.JSON(foundUser)
 
 }
@@ -105,6 +108,9 @@ func ReadProfileHandle(c *fiber.Ctx) error {
 		Permission:     foundUser.Permission,
 		CreatedDate:    foundUser.CreatedDate,
 	}
+
+	log.Info("Help Me!")
+	c.Set("X-Help", "Me!")
 
 	return c.JSON(profileModel)
 
@@ -168,6 +174,8 @@ func GetBySocialName(c *fiber.Ctx) error {
 // ReadMyProfileHandle a function invocation to read authed user profile
 func ReadMyProfileHandle(c *fiber.Ctx) error {
 
+	log.Info("Help ReadMyProfileHandle!")
+
 	// Create service
 	userProfileService, serviceErr := service.NewUserProfileService(database.Db)
 	if serviceErr != nil {
@@ -215,6 +223,10 @@ func ReadMyProfileHandle(c *fiber.Ctx) error {
 		AccessUserList: foundUser.AccessUserList,
 		Permission:     foundUser.Permission,
 	}
+
+	log.Info("Help Me!")
+	c.Set("X-Help", "Me!")
+
 	return c.JSON(profileModel)
 
 }
@@ -316,6 +328,9 @@ func GetProfileByIds(c *fiber.Ctx) error {
 		log.Error("FindByUserId %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByUserId", "Error happened while finding user profile!"))
 	}
+
+	log.Info("Help Me!")
+	c.Set("X-Help", "Me!")
 
 	return c.JSON(foundUsers)
 

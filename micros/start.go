@@ -226,7 +226,7 @@ func getAllConfiguration() *config.Configuration {
 		log.Printf("Content Security Policy '%s' loaded from env.", contentSecurityPolicy)
 	}
 
-	contentTypeOptions, ok := os.LookupEnv("content_header_options")
+	contentTypeOptions, ok := os.LookupEnv("content_type_options")
 	if ok {
 		newCoreConfig.ContentTypeOptions = &contentTypeOptions
 		log.Printf("Content Header Options '%s' loaded from env.", contentTypeOptions)

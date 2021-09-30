@@ -13,6 +13,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	coreConfig "github.com/red-gold/telar-core/config"
+	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/pkg/parser"
 	"github.com/red-gold/telar-core/types"
 	utils "github.com/red-gold/telar-core/utils"
@@ -126,7 +127,19 @@ func functionCall(method string, bytesReq []byte, url string, header map[string]
 		}
 	}
 
-	utils.AddPolicies(httpReq)
+	// utils.AddPolicies(httpReq)
+
+	var securityHeaders = map[string]string{
+		types.HeaderContentSecurityPolicy: *coreConfig.AppConfig.ContentSecurityPolicy,
+		types.HeaderReferrerPolicy:        *coreConfig.AppConfig.ReferrerPolicy,
+		types.HeaderContentTypeOptions:    *coreConfig.AppConfig.ContentTypeOptions,
+	}
+
+	for k, v := range securityHeaders {
+		httpReq.Header.Add(k, v)
+		msg := fmt.Sprintf("Header: %s : %v\n", k, v)
+		log.Info(msg)
+	}
 
 	c := http.Client{}
 	res, reqErr := c.Do(httpReq)
