@@ -1,13 +1,12 @@
 module github.com/GMcD/telar-web/micros/storage
 
-replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.30
+replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.1.38
 
 go 1.16
 
 require (
 	cloud.google.com/go/storage v1.13.0
-	github.com/GMcD/cognito-jwt v0.0.0-20210806015718-8416e465865c
-	github.com/GMcD/telar-web v0.1.134
+	github.com/GMcD/telar-web v0.1.146
 	github.com/aws/aws-sdk-go v1.34.28
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.4

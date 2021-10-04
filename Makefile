@@ -25,7 +25,7 @@ help:		## Show this help.
 stack:		## Update ECR tags in stack.yml on main
 	git checkout main && \
 	if (( $$(git status --porcelain | wc -l) > 0 )); then \
-	    printf "$${GREEN}Module $${RED}ts-serverless$${GREEN} has changes, run $${CYAN}make commit <message>$${GREEN} first.$${NC}\n"; \
+	    printf "$${GREEN}Module $${RED}telar-web$${GREEN} has changes, run $${CYAN}make commit <message>$${GREEN} first.$${NC}\n"; \
 	    exit 1; \
 	fi && \
 	awk -F "." '/354455067292/ { printf $$1; for(i=2;i<NF;i++) printf FS$$i; print FS$$NF+1 } !/354455067292/ { print }' stack.yml > .stack.yml && mv .stack.yml stack.yml
@@ -69,5 +69,9 @@ login:  	## ECR Docker Login
 up:		## Run FaaS up
 up: login
 	for micro in $$(ls -d micros/*/); do pushd ./$${micro}; GOPRIVATE=github.com/GMcD go mod tidy; popd; done
-	echo "Running FaaS up..."
+	# echo "Running FaaS build, push and deploy, seperately ..."
+	# GOPRIVATE=github.com/GMcD faas build --no-cache --build-arg GO111MODULE=on # --filter ${ARGUMENT}
+	# faas push
+	# faas deploy
+	echo "Running FaaS up, all together..."
 	GOPRIVATE=github.com/GMcD faas up --build-arg GO111MODULE=on # --filter ${ARGUMENT}
