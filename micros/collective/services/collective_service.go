@@ -55,6 +55,16 @@ func (s CollectiveServiceImpl) SaveCollective(collective *dto.Collective) error 
 	return result.Error
 }
 
+// UpdateCollective update collective information
+func (s CollectiveServiceImpl) UpdateCollective(filter interface{}, data interface{}) error {
+
+	result := <-s.CollectiveRepo.Update(collectiveCollectionName, filter, data)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
 // FindOneCollective get one collective informaition
 func (s CollectiveServiceImpl) FindOneCollective(filter interface{}) (*dto.Collective, error) {
 
@@ -117,12 +127,12 @@ func (s CollectiveServiceImpl) QueryCollective(search string, sortBy string, pag
 }
 
 // FindCollectiveByCollectiveIds Find profile by Collective IDs
-func (s CollectiveServiceImpl) FindCollectiveByCollectiveIds(collectiveIds []uuid.UUID) ([]dto.CollectiveProfile, error) {
+func (s CollectiveServiceImpl) FindCollectiveByCollectiveIds(collectiveIds []uuid.UUID) ([]dto.Collective, error) {
 	sortMap := make(map[string]int)
 	sortMap["createdDate"] = -1
 
 	include := make(map[string]interface{})
-	include["$in"] = userIds
+	include["$in"] = collectiveIds
 
 	filter := make(map[string]interface{})
 	filter["objectId"] = include
@@ -133,18 +143,18 @@ func (s CollectiveServiceImpl) FindCollectiveByCollectiveIds(collectiveIds []uui
 }
 
 // FindByCollectivename find user Collective by name
-func (s CollectiveServiceImpl) FindByCollectivename(name string) (*dto.Collective, error) {
+func (s CollectiveServiceImpl) FindByCollectiveName(collectiveName string) (*dto.Collective, error) {
 
 	filter := struct {
 		Name string `json:"name"`
 	}{
-		Name: username,
+		Name: collectiveName,
 	}
 	return s.FindOneCollective(filter)
 }
 
 // FindByCollectiveId find Collective by collectiveId
-func (s CollectiveServiceImpl) FindByCollectiveId(collectiveId uuid.UUID) (*dto.CollectiveProfile, error) {
+func (s CollectiveServiceImpl) FindByCollectiveId(collectiveId uuid.UUID) (*dto.Collective, error) {
 
 	filter := struct {
 		ObjectId uuid.UUID `json:"objectId" bson:"objectId"`
@@ -154,7 +164,7 @@ func (s CollectiveServiceImpl) FindByCollectiveId(collectiveId uuid.UUID) (*dto.
 	return s.FindOneCollective(filter)
 }
 
-// DeleteCollective get all Collective informaition.
+// DeleteCollective get all Collective information.
 func (s CollectiveServiceImpl) DeleteCollective(filter interface{}) error {
 
 	result := <-s.CollectiveRepo.Delete(collectiveCollectionName, filter, true)
@@ -168,7 +178,7 @@ func (s CollectiveServiceImpl) DeleteCollective(filter interface{}) error {
 // DeleteManyCollective get all Collective informaition.
 func (s CollectiveServiceImpl) DeleteManyCollective(filter interface{}) error {
 
-	result := <-s.UserProfileRepo.Delete(collectiveCollectionName, filter, false)
+	result := <-s.CollectiveRepo.Delete(collectiveCollectionName, filter, false)
 	if result.Error != nil {
 		return result.Error
 	}
@@ -181,6 +191,24 @@ func (s CollectiveServiceImpl) CreateCollectiveIndex(indexes map[string]interfac
 	return result
 }
 
+// Increment increment a profile field
+func (s CollectiveServiceImpl) Increment(objectId uuid.UUID, field string, value int) error {
+
+	filter := struct {
+		ObjectId uuid.UUID `json:"objectId" bson:"objectId"`
+	}{
+		ObjectId: objectId,
+	}
+
+	data := make(map[string]interface{})
+	data[field] = value
+
+	incOperator := coreData.IncrementOperator{
+		Inc: data,
+	}
+	return s.UpdateCollective(filter, incOperator)
+}
+
 // IncreaseFollowCount increment follow count of post
 func (s CollectiveServiceImpl) IncreaseFollowCount(objectId uuid.UUID, inc int) error {
 	return s.Increment(objectId, "followCount", inc)
@@ -189,4 +217,9 @@ func (s CollectiveServiceImpl) IncreaseFollowCount(objectId uuid.UUID, inc int) 
 // IncreaseFollowerCount increment follower count of post
 func (s CollectiveServiceImpl) IncreaseFollowerCount(objectId uuid.UUID, inc int) error {
 	return s.Increment(objectId, "followerCount", inc)
+}
+
+// IncreasePostCount increment post count of collective
+func (s CollectiveServiceImpl) IncreasePostCount(objectId uuid.UUID, inc int) error {
+	return s.Increment(objectId, "postCount", inc)
 }

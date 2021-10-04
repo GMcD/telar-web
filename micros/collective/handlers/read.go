@@ -15,18 +15,18 @@ import (
 )
 
 type MembersPayload struct {
-	Users map[string]interface{} `json:"users"`
+	Collectives map[string]interface{} `json:"users"`
 }
 
 // ReadDtoCollectiveHandle a function invocation
 func ReadDtoCollectiveHandle(c *fiber.Ctx) error {
 
 	collectiveId := c.Params("collectiveId")
-	log.Info("Read dto collective by collectiveId %s", userId)
-	userUUID, uuidErr := uuid.FromString(userId)
+	log.Info("Read dto collective by collectiveId %s", collectiveId)
+	collectiveUUID, uuidErr := uuid.FromString(collectiveId)
 	if uuidErr != nil {
 		log.Error("Parse UUID %s ", uuidErr.Error())
-		return c.Status(http.StatusBadRequest).JSON(utils.Error("parseUUIDError", "Can not parse user id!"))
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("parseUUIDError", "Can not parse collective id!"))
 	}
 	// Create service
 	collectiveService, serviceErr := service.NewCollectiveService(database.Db)
@@ -35,7 +35,7 @@ func ReadDtoCollectiveHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 	//
-	foundCollective, err := collectiveService.FindByCollectiveId(userUUID)
+	foundCollective, err := collectiveService.FindByCollectiveId(collectiveUUID)
 	if err != nil {
 		log.Error("FindByCollectiveId %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))
@@ -89,7 +89,7 @@ func ReadCollectiveHandle(c *fiber.Ctx) error {
 		Avatar:        foundCollective.Avatar,
 		Banner:        foundCollective.Banner,
 		FollowerCount: foundCollective.FollowerCount,
-		PostCound:     foundCollective.PostCount,
+		PostCount:     foundCollective.PostCount,
 		CreatedDate:   foundCollective.CreatedDate,
 	}
 
@@ -121,26 +121,25 @@ func DispatchCollectiveHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 
-	foundCollectives, err := collectiveService.FindCollectiveByUserIds(model.CollectiveIds)
+	foundCollectives, err := collectiveService.FindCollectiveByCollectiveIds(model.CollectiveIds)
 	if err != nil {
 		log.Error("FindCollectiveByCollectiveIds %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findCollectiveByCollectiveIds", "Error happened while finding collectives!"))
 	}
 
-	mappedCollectives := make(map[string]interface{})
+	mappedCollective := make(map[string]interface{})
 	for _, v := range foundCollectives {
 		mappedCollective := make(map[string]interface{})
 		mappedCollective["collectiveId"] = v.ObjectId
 		mappedCollective["name"] = v.Name
 		mappedCollective["avatar"] = v.Avatar
 		mappedCollective["banner"] = v.Banner
-		mappedCollective["lastSeen"] = v.LastSeen
 		mappedCollective["createdDate"] = v.CreatedDate
-		mappedCollective[v.ObjectId.String()] = mappedUser
+		mappedCollective[v.ObjectId.String()] = mappedCollective
 	}
 
 	actionRoomPayload := &MembersPayload{
-		Collectives: mappedCollectives,
+		Collectives: mappedCollective,
 	}
 
 	activeRoomAction := Action{
@@ -187,7 +186,7 @@ func GetCollectiveByIds(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/collectiveService", "Error happened while creating collectiveService!"))
 	}
 
-	foundCollective, err := collectiveService.FindCollectiveIds(model.CollectiveIds)
+	foundCollective, err := collectiveService.FindCollectiveByCollectiveIds(model.CollectiveIds)
 	if err != nil {
 		log.Error("FindByCollectiveId %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))

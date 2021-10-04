@@ -12,8 +12,7 @@ import (
 	"github.com/red-gold/telar-core/middleware/authcookie"
 	"github.com/red-gold/telar-core/middleware/authhmac"
 	"github.com/red-gold/telar-core/types"
-
-	"github.com/GMcD/cognito-jwt/verify"
+	"github.com/red-gold/telar-core/utils"
 )
 
 // SetupRoutes func
@@ -49,7 +48,7 @@ func SetupRoutes(app *fiber.App) {
 		return authcookie.New(authcookie.Config{
 			Next:         Next,
 			JWTSecretKey: []byte(*config.AppConfig.PublicKey),
-			Authorizer:   verify.VerifyJWT,
+			Authorizer:   utils.VerifyJWT,
 		})
 	}
 
@@ -58,15 +57,14 @@ func SetupRoutes(app *fiber.App) {
 	// Routers
 	app.Get("/id/:collectiveId", append(hmacCookieHandlers, handlers.ReadCollectiveHandle)...)
 	app.Get("/", append(hmacCookieHandlers, handlers.QueryCollectiveHandle)...)
-	app.Get("/social/:name", append(hmacCookieHandlers, handlers.GetBySocialName)...)
 	app.Post("/index", authHMACMiddleware(false), handlers.InitCollectiveIndexHandle)
 
 	// // Invoke between functions and protected by HMAC
-	app.Put("/", authHMACMiddleware(false), handlers.UpdateCollectivesHandle)
-	app.Get("/dto/id/:collectiveId", authHMACMiddleware(false), handlers.ReadDtoCollectivesHandle)
-	app.Post("/dto", authHMACMiddleware(false), handlers.CreateDtoCollectivesHandle)
-	app.Post("/dispatch", authHMACMiddleware(false), handlers.DispatchCollectivesHandle)
-	app.Post("/dto/ids", authHMACMiddleware(false), handlers.GetCollectivesByIds)
-	app.Put("/follow/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreaseFollowCount)
+	app.Get("/dto/id/:collectiveId", authHMACMiddleware(false), handlers.ReadDtoCollectiveHandle)
+	app.Post("/dto", authHMACMiddleware(false), handlers.CreateDtoCollectiveHandle)
+	app.Post("/dispatch", authHMACMiddleware(false), handlers.DispatchCollectiveHandle)
+	app.Post("/dto/ids", authHMACMiddleware(false), handlers.GetCollectiveByIds)
+	app.Put("/follow/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreasePostCount)
 	app.Put("/follower/inc/:inc/:collectiveId", authHMACMiddleware(false), handlers.IncreaseFollowerCount)
+
 }

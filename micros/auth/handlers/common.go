@@ -17,9 +17,9 @@ import (
 	"github.com/GMcD/telar-web/micros/auth/models"
 	"github.com/GMcD/telar-web/micros/auth/provider"
 	"github.com/alexellis/hmac"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
+	jwt "github.com/golang-jwt/jwt/v4"
 	coreConfig "github.com/red-gold/telar-core/config"
 	log "github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/types"
@@ -403,9 +403,12 @@ func functionCall(method string, bytesReq []byte, url string, header map[string]
 			httpReq.Header[k] = v
 		}
 	}
+
+	utils.AddPolicies(httpReq)
+
 	c := http.Client{}
 	res, reqErr := c.Do(httpReq)
-	fmt.Printf("\nRes: %v\n", res)
+	fmt.Printf("\nUrl : %s, Result : %v\n", url, *res)
 	if reqErr != nil {
 		return nil, fmt.Errorf("Error while sending admin check request!: %s", reqErr.Error())
 	}

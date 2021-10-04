@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/GMcD/cognito-jwt/verify"
 	"github.com/GMcD/telar-web/constants"
 	"github.com/GMcD/telar-web/micros/auth/database"
 	"github.com/GMcD/telar-web/micros/auth/dto"
@@ -31,7 +30,7 @@ func Signup2Handle(c *fiber.Ctx) error {
 
 	// take Cognito JWT token from Authorization:
 	jwt := c.Get("Authorization")
-	claims, jwtErr := verify.VerifyJWT(jwt)
+	claims, jwtErr := utils.VerifyJWT(jwt)
 	if jwtErr != nil {
 		errorMessage := fmt.Sprintf("Error validating JWT token : %s", jwtErr.Error())
 		log.Error(errorMessage)

@@ -11,11 +11,11 @@ type CollectiveService interface {
 	FindCollectiveList(filter interface{}, limit int64, skip int64, sort map[string]int) ([]dto.Collective, error)
 	QueryCollective(search string, sortBy string, page int64, notIncludeCollectiveIDList []uuid.UUID) ([]dto.Collective, error)
 	FindCollectiveByCollectiveIds(collectiveIds []uuid.UUID) ([]dto.Collective, error)
-	FindByCollective(collectiveId uuid.UUID) (*dto.Collective, error)
+	FindByCollectiveId(collectiveId uuid.UUID) (*dto.Collective, error)
 	DeleteCollective(filter interface{}) error
-	DeleteCollectiveProfile(filter interface{}) error
 	FindByCollectiveName(name string) (*dto.Collective, error)
 	CreateCollectiveIndex(indexes map[string]interface{}) error
 	IncreaseFollowCount(objectId uuid.UUID, inc int) error
 	IncreaseFollowerCount(objectId uuid.UUID, inc int) error
+	IncreasePostCount(collectiveUUID uuid.UUID, inc int) error
 }
