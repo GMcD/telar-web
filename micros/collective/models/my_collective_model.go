@@ -9,6 +9,9 @@ type MyCollectiveModel struct {
 	Name          string    `json:"Name" bson:"Name" validate:"max=50"`
 	Avatar        string    `json:"avatar" bson:"avatar" validate:"max=500"`
 	Banner        string    `json:"banner" bson:"banner" validate:"max=500"`
+	Tagline       string    `json:"tagLine" bson:"tagLine"`
+	Title         string    `json:"title" bson:"title"`
+	Body          string    `json:"body" bson:"body"`
 	CreatedDate   int64     `json:"created_date" bson:"created_date"`
 	LastUpdated   int64     `json:"last_updated" bson:"last_updated"`
 	VoteCount     int64     `json:"voteCount" bson:"voteCount"`
