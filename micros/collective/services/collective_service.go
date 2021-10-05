@@ -38,9 +38,9 @@ func NewCollectiveService(db interface{}) (CollectiveService, error) {
 // SaveCollective save ollective informaition
 func (s CollectiveServiceImpl) SaveCollective(collective *dto.Collective) error {
 
-	if collective.ObjectId == uuid.Nil {
+	if collective.CollectiveId == uuid.Nil {
 		var uuidErr error
-		collective.ObjectId, uuidErr = uuid.NewV4()
+		collective.CollectiveId, uuidErr = uuid.NewV4()
 		if uuidErr != nil {
 			return uuidErr
 		}
