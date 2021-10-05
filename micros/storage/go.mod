@@ -6,7 +6,7 @@ go 1.16
 
 require (
 	cloud.google.com/go/storage v1.13.0
-	github.com/GMcD/telar-web v0.1.148
+	github.com/GMcD/telar-web v0.1.149
 	github.com/aws/aws-sdk-go v1.34.28
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.4
