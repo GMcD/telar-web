@@ -157,9 +157,9 @@ func (s CollectiveServiceImpl) FindByCollectiveName(collectiveName string) (*dto
 func (s CollectiveServiceImpl) FindByCollectiveId(collectiveId uuid.UUID) (*dto.Collective, error) {
 
 	filter := struct {
-		ObjectId uuid.UUID `json:"objectId" bson:"objectId"`
+		CollectiveId uuid.UUID `json:"objectId" bson:"objectId"`
 	}{
-		ObjectId: collectiveId,
+		CollectiveId: collectiveId,
 	}
 	return s.FindOneCollective(filter)
 }
@@ -192,12 +192,12 @@ func (s CollectiveServiceImpl) CreateCollectiveIndex(indexes map[string]interfac
 }
 
 // Increment increment a profile field
-func (s CollectiveServiceImpl) Increment(objectId uuid.UUID, field string, value int) error {
+func (s CollectiveServiceImpl) Increment(collectiveId uuid.UUID, field string, value int) error {
 
 	filter := struct {
-		ObjectId uuid.UUID `json:"objectId" bson:"objectId"`
+		CollectiveId uuid.UUID `json:"collectiveId" bson:"collectiveId"`
 	}{
-		ObjectId: objectId,
+		CollectiveId: collectiveId,
 	}
 
 	data := make(map[string]interface{})

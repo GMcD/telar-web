@@ -84,7 +84,7 @@ func ReadCollectiveHandle(c *fiber.Ctx) error {
 	}
 
 	collectiveModel := models.MyCollectiveModel{
-		ObjectId:      foundCollective.ObjectId,
+		CollectiveId:  foundCollective.CollectiveId,
 		Name:          foundCollective.Name,
 		Avatar:        foundCollective.Avatar,
 		Banner:        foundCollective.Banner,
@@ -130,12 +130,12 @@ func DispatchCollectiveHandle(c *fiber.Ctx) error {
 	mappedCollective := make(map[string]interface{})
 	for _, v := range foundCollectives {
 		mappedCollective := make(map[string]interface{})
-		mappedCollective["collectiveId"] = v.ObjectId
+		mappedCollective["collectiveId"] = v.CollectiveId
 		mappedCollective["name"] = v.Name
 		mappedCollective["avatar"] = v.Avatar
 		mappedCollective["banner"] = v.Banner
 		mappedCollective["createdDate"] = v.CreatedDate
-		mappedCollective[v.ObjectId.String()] = mappedCollective
+		mappedCollective[v.CollectiveId.String()] = mappedCollective
 	}
 
 	actionRoomPayload := &MembersPayload{
