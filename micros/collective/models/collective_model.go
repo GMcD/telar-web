@@ -3,8 +3,8 @@ package models
 import "github.com/gofrs/uuid"
 
 type CollectivesModel struct {
-	CollectiveId  uuid.UUID	`json:"collectiveId" bson:"collectiveId"`
-	Name          string	`json:"Name" bson:"Name", validate:"max=50"`
+	CollectiveId  uuid.UUID `json:"collectiveId" bson:"collectiveId"`
+	Name          string    `json:"Name" bson:"Name", validate:"max=50"`
 	Avatar        string    `json:"avatar" bson:"avatar", validate:"max=500"`
 	Banner        string    `json:"banner" bson:"banner", validate:"max=500"`
 	CreatedDate   int64     `json:"created_date" bson:"created_date"`
