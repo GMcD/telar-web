@@ -1,8 +1,8 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/GMcD/telar-core v0.1.38 h1:ij4uDZsyHuNB2kfarBFjYq5C4/85+FEbleuJg2eT1PI=
 github.com/GMcD/telar-core v0.1.38/go.mod h1:uZAubEVyR4eOJL1l1fqGhRMqs1rANM5gohRO3vcpOYs=
-github.com/GMcD/telar-web v0.1.150 h1:K3HR13+l0q3hzBvqraTdObunS3bGZhU2ceUDjLfWHVE=
-github.com/GMcD/telar-web v0.1.150/go.mod h1:fpLOA/rmtW2zAFFRy0+xL+J22tcrHlCdxe7FU9MZSXc=
+github.com/GMcD/telar-web v0.1.151 h1:sQ3B3w7CK2Ad72HLzzKjwmZUpbEJV9xDIall1a7FWEY=
+github.com/GMcD/telar-web v0.1.151/go.mod h1:fpLOA/rmtW2zAFFRy0+xL+J22tcrHlCdxe7FU9MZSXc=
 github.com/MicahParks/keyfunc v0.8.2 h1:C5T/ixarxdwFVDHh10+UwP6Bi2GIlvs9IwICg9kCs/I=
 github.com/MicahParks/keyfunc v0.8.2/go.mod h1:yGAHz3pCqcMHdEbqZWv5kvY9p5KXO/c38QW3018ax74=
 github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de h1:jiPEvtW8VT0KwJxRyjW2VAAvlssjj9SfecsQ3Vgv5tk=
@@ -202,8 +202,8 @@ golang.org/x/tools v0.0.0-20190329151228-23e29df326fe/go.mod h1:LCzVGOaR6xXOjkQ3
 golang.org/x/tools v0.0.0-20190416151739-9c9e1878f421/go.mod h1:LCzVGOaR6xXOjkQ3onu1FJEFr0SW1gC7cKk1uF8kGRs=
 golang.org/x/tools v0.0.0-20190420181800-aa740d480789/go.mod h1:LCzVGOaR6xXOjkQ3onu1FJEFr0SW1gC7cKk1uF8kGRs=
 golang.org/x/tools v0.0.0-20190531172133-b3315ee88b7d/go.mod h1:/rFqwRUd4F7ZHNgwSSTFct+R/Kf4OFW1sUzUTQQTgfc=
+golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 h1:E7g+9GITq07hpfrRu66IVDexMakfv52eLZ2CXBWiKr4=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
-golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=
