@@ -88,6 +88,9 @@ func ReadCollectiveHandle(c *fiber.Ctx) error {
 		Name:          foundCollective.Name,
 		Avatar:        foundCollective.Avatar,
 		Banner:        foundCollective.Banner,
+		Tagline:       foundCollective.Tagline,
+		Title:         foundCollective.Title,
+		Body:          foundCollective.Body,
 		FollowerCount: foundCollective.FollowerCount,
 		PostCount:     foundCollective.PostCount,
 		CreatedDate:   foundCollective.CreatedDate,
@@ -134,6 +137,9 @@ func DispatchCollectiveHandle(c *fiber.Ctx) error {
 		mappedCollective["name"] = v.Name
 		mappedCollective["avatar"] = v.Avatar
 		mappedCollective["banner"] = v.Banner
+		mappedCollective["tagLine"] = v.Tagline
+		mappedCollective["body"] = v.Body
+		mappedCollective["title"] = v.Title
 		mappedCollective["createdDate"] = v.CreatedDate
 		mappedCollective[v.CollectiveId.String()] = mappedCollective
 	}
