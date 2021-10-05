@@ -5,7 +5,7 @@ import (
 )
 
 type MyCollectiveModel struct {
-	ObjectId      uuid.UUID `json:"objectId" bson:"objectId"`
+	CollectiveId  uuid.UUID `json:"collectiveId" bson:"collectiveId"`
 	Name          string    `json:"Name" bson:"Name" validate:"max=50"`
 	Avatar        string    `json:"avatar" bson:"avatar" validate:"max=500"`
 	Banner        string    `json:"banner" bson:"banner" validate:"max=500"`
