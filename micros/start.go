@@ -229,7 +229,7 @@ func getAllConfiguration() *config.Configuration {
 	contentTypeOptions, ok := os.LookupEnv("content_type_options")
 	if ok {
 		newCoreConfig.ContentTypeOptions = &contentTypeOptions
-		log.Printf("Content Header Options '%s' loaded from env.", contentTypeOptions)
+		log.Printf("Content Type Options '%s' loaded from env.", contentTypeOptions)
 	}
 
 	referrerPolicy, ok := os.LookupEnv("referrer_policy")
