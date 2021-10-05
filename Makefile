@@ -67,6 +67,11 @@ login:  	## ECR Docker Login
 	echo "Running as $${AWS_IAM_ARN} in $${AWS_REGION} for $${AWS_ACCOUNT_ID}."
 
 up:		## Run FaaS up
+up:			# If a build breaks due to syntax errors, there is an issue with pseudo-version package
+up:			# numbers, whereby the error is uploaded to public github, and subsequent builds will
+up:			# pick up the new release, when it is pushed, as it can't be pushed til it is built..
+up:			# Current resolution is to rebuild the broken guy, out of band, with
+up:			# `GOPRIVATE=github.com/GMcD faas build --no-cache --build-arg GO111MODULE=on --filter collective` 
 up: login
 	for micro in $$(ls -d micros/*/); do pushd ./$${micro}; GOPRIVATE=github.com/GMcD go mod tidy; popd; done
 	# echo "Running FaaS build, push and deploy, seperately ..."
