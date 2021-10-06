@@ -7,5 +7,5 @@ const (
 const (
 	numberOfVerifyRequest       = 3
 	expireTimeOffset            = 3600
-	numberOfItems         int64 = 10
+	numberOfItems         int64 = 50
 )
