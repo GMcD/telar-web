@@ -157,7 +157,7 @@ func (s CollectiveServiceImpl) FindByCollectiveName(collectiveName string) (*dto
 func (s CollectiveServiceImpl) FindByCollectiveId(collectiveId uuid.UUID) (*dto.Collective, error) {
 
 	filter := struct {
-		CollectiveId uuid.UUID `json:"objectId" bson:"objectId"`
+		CollectiveId uuid.UUID `json:"collectiveId" bson:"collectiveId"`
 	}{
 		CollectiveId: collectiveId,
 	}
