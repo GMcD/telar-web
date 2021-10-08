@@ -68,9 +68,11 @@ func (s CollectiveServiceImpl) UpdateCollective(filter interface{}, data interfa
 // FindOneCollective get one collective informaition
 func (s CollectiveServiceImpl) FindOneCollective(filter interface{}) (*dto.Collective, error) {
 
-	result := <-s.CollectiveRepo.FindOne(collectiveCollectionName, filter)
+	fmt.Errorf("Looking for Collective with Id/Name: %s in '%s'", filter, collectiveCollectionName)
+	result := <-s.CollectiveRepo.FindOne("collective", filter)
 	if result.Error() != nil {
 		if result.Error() == coreData.ErrNoDocuments {
+			fmt.Errorf("Found no Collective with Id/Name: %s in '%s'", filter, collectiveCollectionName)
 			return nil, nil
 		}
 		return nil, result.Error()
@@ -79,12 +81,12 @@ func (s CollectiveServiceImpl) FindOneCollective(filter interface{}) (*dto.Colle
 	var collectiveResult dto.Collective
 	errDecode := result.Decode(&collectiveResult)
 	if errDecode != nil {
-		return nil, fmt.Errorf("Error docoding on dto.Collective")
+		return nil, fmt.Errorf("Error decoding on dto.Collective")
 	}
 	return &collectiveResult, nil
 }
 
-// FindCollectiveList get all Collective informaition
+// FindCollectiveList get list of Collectives
 func (s CollectiveServiceImpl) FindCollectiveList(filter interface{}, limit int64, skip int64, sort map[string]int) ([]dto.Collective, error) {
 
 	result := <-s.CollectiveRepo.Find("collective", filter, limit, skip, sort)
@@ -118,7 +120,7 @@ func (s CollectiveServiceImpl) QueryCollective(search string, sortBy string, pag
 	if notIncludeCollectiveIDList != nil && len(notIncludeCollectiveIDList) > 0 {
 		nin := make(map[string]interface{})
 		nin["$nin"] = notIncludeCollectiveIDList
-		filter["objectId"] = nin
+		filter["collectiveId"] = nin
 	}
 	fmt.Println(filter)
 	result, err := s.FindCollectiveList(filter, limit, skip, sortMap)
@@ -135,7 +137,7 @@ func (s CollectiveServiceImpl) FindCollectiveByCollectiveIds(collectiveIds []uui
 	include["$in"] = collectiveIds
 
 	filter := make(map[string]interface{})
-	filter["objectId"] = include
+	filter["collectiveId"] = include
 
 	result, err := s.FindCollectiveList(filter, 0, 0, sortMap)
 

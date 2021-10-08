@@ -74,7 +74,7 @@ func ReadCollectiveHandle(c *fiber.Ctx) error {
 
 	foundCollective, err := collectiveService.FindByCollectiveId(collectiveUUID)
 	if err != nil {
-		log.Error("FindBycCllectiveId %s", err.Error())
+		log.Error("FindByCollectiveId %s", err.Error())
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/findByCollectiveId", "Error happened while finding collective!"))
 	}
 

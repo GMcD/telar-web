@@ -12,7 +12,7 @@ import (
 	utils "github.com/red-gold/telar-core/utils"
 )
 
-// InitPCollectiveIndexHandle handle create a new index
+// InitCollectiveIndexHandle handle create a new index
 func InitCollectiveIndexHandle(c *fiber.Ctx) error {
 
 	// Create service
@@ -24,8 +24,8 @@ func InitCollectiveIndexHandle(c *fiber.Ctx) error {
 	}
 
 	postIndexMap := make(map[string]interface{})
-	postIndexMap["Name"] = "text"
-	postIndexMap["objectId"] = 1
+	postIndexMap["title"] = "text"
+	postIndexMap["collectiveId"] = 1
 	if err := collectiveService.CreateCollectiveIndex(postIndexMap); err != nil {
 		errorMessage := fmt.Sprintf("Create post index Error %s", err.Error())
 		log.Error(errorMessage)
