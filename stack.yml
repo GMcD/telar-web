@@ -2,7 +2,7 @@ functions:
   actions:
     lang: golang-middleware
     handler: ./micros/actions
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/actions:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/actions:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -23,7 +23,7 @@ functions:
   admin:
     lang: golang-middleware
     handler: ./micros/admin
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/admin:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/admin:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -44,7 +44,7 @@ functions:
   auth:
     lang: golang-middleware
     handler: ./micros/auth
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/auth:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/auth:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -65,7 +65,7 @@ functions:
   notifications:
     lang: golang-middleware
     handler: ./micros/notifications
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/notifications:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -86,7 +86,7 @@ functions:
   profile:
     lang: golang-middleware
     handler: ./micros/profile
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/profile:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/profile:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -107,7 +107,7 @@ functions:
   collective:
     lang: golang-middleware
     handler: ./micros/collective
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/collective:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/collective:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -128,7 +128,7 @@ functions:
   setting:
     lang: golang-middleware
     handler: ./micros/setting
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/setting:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/setting:v2.2.165
     fprocess: ""
     environment: {}
     secrets:
@@ -149,7 +149,7 @@ functions:
   storage:
     lang: golang-middleware
     handler: ./micros/storage
-    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/storage:v2.2.164
+    image: 354455067292.dkr.ecr.eu-west-2.amazonaws.com/telar/storage:v2.2.165
     fprocess: ""
     secrets:
     - telar-web-secrets
