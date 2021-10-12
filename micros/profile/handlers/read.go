@@ -230,7 +230,6 @@ func DispatchProfilesHandle(c *fiber.Ctx) error {
 		mappedUser["avatar"] = v.Avatar
 		mappedUser["banner"] = v.Banner
 		mappedUser["tagLine"] = v.TagLine
-		mappedUser["lastSeen"] = v.LastSeen
 		mappedUser["createdDate"] = v.CreatedDate
 		mappedUsers[v.ObjectId.String()] = mappedUser
 	}
