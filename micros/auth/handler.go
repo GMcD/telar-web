@@ -37,9 +37,10 @@ func init() {
 	app.Use(requestid.New())
 	app.Use(logger.New(
 		logger.Config{
-			Format: "[${time}] ${status} - ${latency} ${method} ${path} - ${header:}\n​",
+			Format: "[${time}] ${status} - ${latency} ${method} ${path} - ${header:}\n",
 		},
 	))
+	log.Info("CORS origin: %s", *config.AppConfig.Origin)
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     *config.AppConfig.Origin,
 		AllowCredentials: true,

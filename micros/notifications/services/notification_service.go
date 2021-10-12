@@ -159,7 +159,7 @@ func (s NotificationServiceImpl) FindNotificationsReceiver(filter interface{}, l
 		var comment dto.Notification
 		errDecode := result.Decode(&comment)
 		if errDecode != nil {
-			return nil, fmt.Errorf("Error docoding on dto.Comment")
+			return nil, fmt.Errorf("Error decoding on dto.Comment")
 		}
 		commentList = append(commentList, comment)
 	}

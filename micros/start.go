@@ -151,7 +151,9 @@ func getAllConfiguration() *config.Configuration {
 	origin, ok := os.LookupEnv("origin")
 	if ok {
 		newCoreConfig.Origin = &origin
-		log.Printf("[INFO]: Origin information loaded from env.")
+		log.Printf("[INFO]: Origin '%s' information loaded from env.", origin)
+	} else {
+		log.Printf("[WARN]: Origin not found in env.")
 	}
 
 	headerCookieName, ok := os.LookupEnv("header_cookie_name")
