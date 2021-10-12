@@ -47,7 +47,7 @@ func CreateDtoProfileHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userProfileService", "Error happened while creating userProfileService!"))
 	}
 
-	model := new(dto.UserProfile)
+	model := new(dto.UserPublicProfile)
 	err := c.BodyParser(model)
 	if err != nil {
 		errorMessage := fmt.Sprintf("parse user profile model %s", err.Error())

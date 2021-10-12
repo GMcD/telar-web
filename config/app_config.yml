@@ -20,4 +20,3 @@ environment:
   content_type_options: nosniff
   referrer_policy: origin
   aws_region: eu-west-2
-  origin: "*"

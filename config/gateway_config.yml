@@ -3,4 +3,4 @@ environment:
   gateway: https://openfaas.prod.monitalks.io
   internal_gateway: https://openfaas.prod.monitalks.io/function
   websocket_server_url: https://chat.prod.monitalks.io
-  origin: "https://openfaas.prod.monitalks.io,https://social.prod.monitalks.io"
+  origin: "*, https://openfaas.prod.monitalks.io, https://social.prod.monitalks.io"

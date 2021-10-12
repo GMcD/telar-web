@@ -18,7 +18,7 @@ type UserProfileQueryModel struct {
 	NotInclude []uuid.UUID `query:"nin"`
 }
 
-// QueryUserProfileHandle handle queru on userProfile
+// QueryUserProfileHandle handle query on userProfile
 func QueryUserProfileHandle(c *fiber.Ctx) error {
 
 	// Create service

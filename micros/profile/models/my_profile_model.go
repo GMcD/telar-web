@@ -39,3 +39,18 @@ type MyProfileModel struct {
 	AccessUserList []string                      `json:"accessUserList"`
 	Permission     constants.UserPermissionConst `json:"permission"`
 }
+
+type MyPublicProfileModel struct {
+	ObjectId       uuid.UUID                     `json:"objectId"`
+	FullName       string                        `json:"fullName"`
+	SocialName     string                        `json:"socialName"`
+	Avatar         string                        `json:"avatar"`
+	Banner         string                        `json:"banner"`
+	TagLine        string                        `json:"tagLine"`
+	CreatedDate    int64                         `json:"created_date"`
+	LastUpdated    int64                         `json:"last_updated"`
+	FollowCount    int64                         `json:"followCount"`
+	FollowerCount  int64                         `json:"followerCount"`
+	AccessUserList []string                      `json:"accessUserList"`
+	Permission     constants.UserPermissionConst `json:"permission"`
+}

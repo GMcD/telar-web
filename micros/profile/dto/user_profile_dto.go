@@ -49,3 +49,18 @@ type UserProfile struct {
 	AccessUserList []string                      `json:"accessUserList" bson:"accessUserList"`
 	Permission     constants.UserPermissionConst `json:"permission" bson:"permission"`
 }
+
+type UserPublicProfile struct {
+	ObjectId       uuid.UUID                     `json:"objectId" bson:"objectId"`
+	FullName       string                        `json:"fullName" bson:"fullName"`
+	SocialName     string                        `json:"socialName" bson:"socialName"`
+	Avatar         string                        `json:"avatar" bson:"avatar"`
+	Banner         string                        `json:"banner" bson:"banner"`
+	TagLine        string                        `json:"tagLine" bson:"tagLine"`
+	CreatedDate    int64                         `json:"created_date" bson:"created_date"`
+	LastUpdated    int64                         `json:"last_updated" bson:"last_updated"`
+	FollowCount    int64                         `json:"followCount" bson:"followCount"`
+	FollowerCount  int64                         `json:"followerCount" bson:"followerCount"`
+	AccessUserList []string                      `json:"accessUserList" bson:"accessUserList"`
+	Permission     constants.UserPermissionConst `json:"permission" bson:"permission"`
+}

@@ -83,27 +83,17 @@ func ReadProfileHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
 	}
 
-	profileModel := models.MyProfileModel{
+	profileModel := models.MyPublicProfileModel{
 		ObjectId:       foundUser.ObjectId,
 		FullName:       foundUser.FullName,
 		SocialName:     foundUser.SocialName,
 		Avatar:         foundUser.Avatar,
 		Banner:         foundUser.Banner,
 		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
 		FollowCount:    foundUser.FollowCount,
 		FollowerCount:  foundUser.FollowerCount,
-		WebUrl:         foundUser.WebUrl,
-		CompanyName:    foundUser.CompanyName,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
 		AccessUserList: foundUser.AccessUserList,
 		Permission:     foundUser.Permission,
-		CreatedDate:    foundUser.CreatedDate,
 	}
 
 	return c.JSON(profileModel)
@@ -138,27 +128,17 @@ func GetBySocialName(c *fiber.Ctx) error {
 		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
 	}
 
-	profileModel := models.MyProfileModel{
+	profileModel := models.MyPublicProfileModel{
 		ObjectId:       foundUser.ObjectId,
 		FullName:       foundUser.FullName,
 		SocialName:     foundUser.SocialName,
 		Avatar:         foundUser.Avatar,
 		Banner:         foundUser.Banner,
 		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
 		FollowCount:    foundUser.FollowCount,
 		FollowerCount:  foundUser.FollowerCount,
-		WebUrl:         foundUser.WebUrl,
-		CompanyName:    foundUser.CompanyName,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
 		AccessUserList: foundUser.AccessUserList,
 		Permission:     foundUser.Permission,
-		CreatedDate:    foundUser.CreatedDate,
 	}
 
 	return c.JSON(profileModel)
@@ -194,26 +174,15 @@ func ReadMyProfileHandle(c *fiber.Ctx) error {
 		return c.Status(http.StatusNotFound).JSON(utils.Error("notFoundUser", "Error happened while finding user profile!"))
 	}
 
-	profileModel := models.MyProfileModel{
+	profileModel := models.MyPublicProfileModel{
 		ObjectId:       foundUser.ObjectId,
 		FullName:       foundUser.FullName,
 		SocialName:     foundUser.SocialName,
 		Avatar:         foundUser.Avatar,
 		Banner:         foundUser.Banner,
 		TagLine:        foundUser.TagLine,
-		Birthday:       foundUser.Birthday,
-		CompanyName:    foundUser.CompanyName,
-		Country:        foundUser.Country,
-		Address:        foundUser.Address,
-		LastSeen:       foundUser.LastSeen,
-		Phone:          foundUser.Phone,
-		WebUrl:         foundUser.WebUrl,
 		FollowCount:    foundUser.FollowCount,
 		FollowerCount:  foundUser.FollowerCount,
-		FacebookId:     foundUser.FacebookId,
-		InstagramId:    foundUser.InstagramId,
-		TwitterId:      foundUser.TwitterId,
-		LinkedInId:     foundUser.LinkedInId,
 		AccessUserList: foundUser.AccessUserList,
 		Permission:     foundUser.Permission,
 	}
