@@ -23,12 +23,11 @@ var app *fiber.App
 
 // Extra Headers
 var helmetHeaders = helmet.Config{
-	ContentSecurityPolicy: "123",
+	ContentSecurityPolicy: "upgrade-insecure-requests; script-src 'self' *.prod.monitalks.io; img-src 'self' https://prod-monitalks-media.s3.eu-west-2.amazonaws.com;",
 	CSPReportOnly:         false,
 	HSTSPreloadEnabled:    true,
 	ReferrerPolicy:        "origin",
-	PermissionPolicy:      "Gary",
-	HSTSMaxAge:            3600,
+	HSTSMaxAge:            31536000,
 	HSTSExcludeSubdomains: true,
 }
 
