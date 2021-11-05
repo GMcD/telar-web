@@ -38,10 +38,10 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/CloudyKit/fastprinter v0.0.0-20200109182630-33d98a066a53/go.mod h1:+3IMCy2vIlbG1XG/0ggNQv0SvxCAIpPM5b1nCz56Xno=
 github.com/CloudyKit/jet/v6 v6.1.0/go.mod h1:d3ypHeIRNo2+XyqnGA8s+aphtcVpjP5hPwP/Lzo7Ro4=
 github.com/Djarvur/go-err113 v0.0.0-20200511133814-5174e21577d5/go.mod h1:4UJr5HIiMZrwgkSPdsjy2uOQExX/WEILpIrO9UPGuXs=
-github.com/GMcD/telar-core v0.1.38 h1:ij4uDZsyHuNB2kfarBFjYq5C4/85+FEbleuJg2eT1PI=
-github.com/GMcD/telar-core v0.1.38/go.mod h1:uZAubEVyR4eOJL1l1fqGhRMqs1rANM5gohRO3vcpOYs=
-github.com/GMcD/telar-web v0.1.158 h1:+1K/H/G452vWNRNEKe5nhx0olXxYCSLrk4fM4qc/8xI=
-github.com/GMcD/telar-web v0.1.158/go.mod h1:fpLOA/rmtW2zAFFRy0+xL+J22tcrHlCdxe7FU9MZSXc=
+github.com/GMcD/telar-core v0.1.43 h1:EQC4Y2bfndUYomuaLQ8RL/bz6GlLOUE/+yE7O0Wys1Q=
+github.com/GMcD/telar-core v0.1.43/go.mod h1:uZAubEVyR4eOJL1l1fqGhRMqs1rANM5gohRO3vcpOYs=
+github.com/GMcD/telar-web v0.1.159 h1:T2QmMMc4pric5kbf3uaEFe88Emcn6onb5r+Fupcm5dY=
+github.com/GMcD/telar-web v0.1.159/go.mod h1:OKY5khZvOMJPVacS2qVAMg2tkm0SXiJvgIcp86fYf40=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
 github.com/Joker/hpp v1.0.0/go.mod h1:8x5n+M1Hp5hC0g8okX3sR3vFQwynaX/UgSOM9MeBKzY=
 github.com/Joker/jade v1.0.0/go.mod h1:efZIdO0py/LtcJRSa/j2WEklMSAw84WV0zZVMxNToB8=
