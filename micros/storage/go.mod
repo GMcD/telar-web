@@ -10,7 +10,8 @@ require (
 	github.com/aws/aws-sdk-go v1.34.28
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gofiber/adaptor/v2 v2.1.4
-	github.com/gofiber/fiber/v2 v2.10.0
+	github.com/gofiber/fiber/v2 v2.20.1
+	github.com/gofiber/helmet/v2 v2.2.3
 	github.com/gofrs/uuid v4.0.0+incompatible
 	github.com/onsi/ginkgo v1.15.0 // indirect
 	github.com/onsi/gomega v1.10.5 // indirect

@@ -21,6 +21,17 @@ import (
 // Cache state
 var app *fiber.App
 
+// Extra Headers
+var helmetHeaders = helmet.Config{
+	ContentSecurityPolicy: "123",
+	CSPReportOnly:         false,
+	HSTSPreloadEnabled:    true,
+	ReferrerPolicy:        "origin",
+	PermissionPolicy:      "Gary",
+	HSTSMaxAge:            3600,
+	HSTSExcludeSubdomains: true,
+}
+
 func init() {
 
 	micros.InitConfig()
@@ -29,7 +40,7 @@ func init() {
 	app = fiber.New()
 	app.Use(recover.New())
 	app.Use(requestid.New())
-	app.Use(helmet.New())
+	app.Use(helmet.New(helmetHeaders))
 	app.Use(logger.New(
 		logger.Config{
 			Format: "[${time}] ${status} - ${latency} ${method} ${path} - ${header:}\n​",
