@@ -1,19 +1,30 @@
 #!/bin/bash
 
-JWT=eyJraWQiOiI3WHV5NTdsc0I3TnJ2MUo4TkM5T0FlaEhhQ1pBVjJGRVwveCs2YzhlXC9CYXM9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1ZDM1ZjNhMy01MmVjLTQxN2QtYTAzMy0yNzEzMGQ0ZTNjZmMiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMi5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTJfWldtZko2dkpzIiwiY29nbml0bzp1c2VybmFtZSI6IjVkMzVmM2EzLTUyZWMtNDE3ZC1hMDMzLTI3MTMwZDRlM2NmYyIsIm9yaWdpbl9qdGkiOiJlMjFhZWU5ZC1mODdkLTRiNjMtYjg3Ni0zNzk2NjU5NmExZmEiLCJhdWQiOiJnY2xnN2k1ajQxY3VjYWl2a3RxMjc2bTE1IiwiZXZlbnRfaWQiOiIxMDVmNzEyZC0xNDViLTQyZDgtOTJjYy1jNmQ5MGM1MmMxYjAiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTYzMzk0MTczNCwibmFtZSI6IkdhcnkgTWFjRG9uYWxkIiwiZXhwIjoxNjM0MDM1MTAyLCJpYXQiOjE2MzQwMjc5MDIsImp0aSI6ImYzZWYwNDgxLWM1ZTgtNGEwYy04NTk5LTZjM2JkODhlZGU1YiIsImVtYWlsIjoicHJvamVjdC5zY2FwYUBnbWFpbC5jb20ifQ.DKer123w88BHL6D-uW_3WhCa2YoBS3PTekwYH4dWKA5sZvlbGTWOAHt41g7o3ilNVtWZ40W2gg6oEHhBeJpkvNmTMcLORzfAKadutxh5pWYoU6qJ0mwYA4q2rekl3HpySz3gS-zqqa8USBn_TebMg-ejnZS0--F-b-VaYKU4gLj-KbdGOZDtJA-WU_x6RehwTxQa3TjCDKmXUQa3ovqYiUSr0hIoTDNgS9GcjSzSp_zqsksIYy1HK796S-NSyQO5ZeCru2CXuV184xB95q8tOZ_OMt_famPyxA26mtvgsSo4-YBZJWKuR80eDT5wOhrq8As74KD5If5RLOt0_HVxzw
+AUTH=https://auth.prod.monitalks.io
+API=https://int-api.prod.monitalks.io/function
+FAAS=https://openfaas.prod.monitalks.io/function
 
+COGNITO_URL=${AUTH}/cognito
 
+API_PROFILE_URL=${API}/profile/my
+FAAS_PROFILE_URL=${FAAS}/profile/my
 
+ACCESS=$(curl -s -X POST --data $CREDENTIALS $COGNITO_URL | jq -r '.Authorization')
+
+echo $ACCESS
+
+# Random Collectives
+BETA=a7aaabc9-4053-4596-9e51-37a2295fb6c1
 OCEAN=a7aaabc9-4053-4596-9e51-37a2295fb6a9
 POST=d29efbcb-10e9-4e3d-9ee3-dddab7e0fddd
 
-# COLL_URL=https://openfaas.prod.monitalks.io/function/posts/collectives/$OCEAN?collectiveId=a7aaabc9-4053-4596-9e51-37a2295fb6c1
-COLL_URL=https://openfaas.prod.monitalks.io/function/posts/collectives?collectiveId=a7aaabc9-4053-4596-9e51-37a2295fb6c1
-POST_URL=https://openfaas.prod.monitalks.io/function/posts/$POST
-POSTS_URL=https://openfaas.prod.monitalks.io/function/posts?search=\&page=1\&limit=10
+# Sample URLs
+# COLL_URL=${API}/posts/collectives/$BETA/
+COLL_URL=${FAAS}/posts/collectives/?collectiveId=$BETA
+# POST_URL=${FAAS}/posts/$POST
+# POSTS_URL=${FAAS}/posts?search=\&page=1\&limit=10
 
-# curl -H "Authorization: $JWT" $COLL_URL | jq '.[] | {objectId,collectiveId,ownerDisplayName,body}'
-
-# curl -H "Authorization: $JWT" $POST_URL | jq '{objectId,collectiveId,ownerDisplayName}'
-
-curl -H "Authorization: $JWT" $POSTS_URL | jq '.'
+# Retrievals
+curl -H "Authorization: $ACCESS" $COLL_URL | jq '.[] | {objectId,collectiveId,ownerDisplayName,body}'
+# curl -H "Authorization: $ACCESS" $POST_URL | jq '{objectId,collectiveId,ownerDisplayName}'
+# curl -H "Authorization: $ACCESS" $POSTS_URL | jq '.'
