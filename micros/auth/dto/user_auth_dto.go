@@ -8,6 +8,8 @@ type UserAuth struct {
 	ObjectId      uuid.UUID `json:"objectId" bson:"objectId"`
 	Username      string    `json:"username" bson:"username"`
 	Password      []byte    `json:"password" bson:"password"`
+	Birthdate     string    `json:"birthdate" bson:"birthdate"`
+	Residency     string    `json:"residency" bson:"residency"`
 	AccessToken   string    `json:"access_token" bson:"access_token"`
 	EmailVerified bool      `json:"emailVerified" bson:"emailVerified"`
 	Role          string    `json:"role" bson:"role"`

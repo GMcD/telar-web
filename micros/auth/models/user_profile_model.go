@@ -16,6 +16,8 @@ type UserProfileModel struct {
 	LastUpdated    int64                         `json:"last_updated" bson:"last_updated"`
 	Email          string                        `json:"email" bson:"email"`
 	Birthday       int64                         `json:"birthday" bson:"birthday"`
+	Birthdate      string                        `json:"birthdate" bson:"birthdate"`
+	Residency      string                        `json:"residency" bson:"residency"`
 	WebUrl         string                        `json:"webUrl" bson:"webUrl"`
 	CompanyName    string                        `json:"companyName" bson:"companyName"`
 	VoteCount      int64                         `json:"voteCount" bson:"voteCount"`

@@ -19,10 +19,12 @@ import (
 )
 
 type User struct {
-	userid   uuid.UUID `json:"userid" xml:"userid" form:"userid" query:"userid"`
-	fullname string    `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
-	email    string    `json:"email" xml:"email" form:"email" query:"email"`
-	password string    `json:"password" xml:"password" form:"password" query:"password"`
+	userid    uuid.UUID `json:"userid" xml:"userid" form:"userid" query:"userid"`
+	fullname  string    `json:"fullname" xml:"fullname" form:"fullname" query:"fullname"`
+	email     string    `json:"email" xml:"email" form:"email" query:"email"`
+	password  string    `json:"password" xml:"password" form:"password" query:"password"`
+	birthdate string    `json:"birthdate" xml:"birthdate" form:"birthdate" query:"birthdate"`
+	residency string    `json:"residency" xml:"residency" form:"residency" query:"residency"`
 }
 
 func Signup2Handle(c *fiber.Ctx) error {
@@ -45,6 +47,8 @@ func Signup2Handle(c *fiber.Ctx) error {
 	p.userid = cognitoUUID
 	p.fullname = claims["name"].(string)
 	p.email = claims["email"].(string)
+	p.birthdate = claims["birthdate"].(string)
+	p.residency = claims["residency"].(string)
 	p.password, _ = password.Generate(12, 4, 4, false, false)
 
 	log.Info(fmt.Sprintf("%+v\n", p))
@@ -64,12 +68,24 @@ func Signup2Handle(c *fiber.Ctx) error {
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing password"))
 	}
 
+	if p.birthdate == "" {
+		log.Error("Signup2Handle: missing form value birthdate")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing birthdate"))
+	}
+
+	if p.residency == "" {
+		log.Error("Signup2Handle: missing form value residency")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing residency"))
+	}
+
 	// pass params into usermodel
 	model := &models.SignupTokenModel{
 		User: models.UserSignupTokenModel{
-			Fullname: p.fullname,
-			Email:    p.email,
-			Password: p.password,
+			Fullname:  p.fullname,
+			Email:     p.email,
+			Password:  p.password,
+			Birthdate: p.birthdate,
+			Residency: p.residency,
 		},
 	}
 	// check model isn't empty
@@ -88,16 +104,26 @@ func Signup2Handle(c *fiber.Ctx) error {
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing password"))
 	}
 
+	if model.User.Birthdate == "" {
+		log.Error("Signup2Handle: missing model birthdate")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing birthdate"))
+	}
+
+	if model.User.Residency == "" {
+		log.Error("Signup2Handle: missing model residency")
+		return c.Status(http.StatusBadRequest).JSON(utils.Error("missingPassword", "Missing residency"))
+	}
+
 	// Create service
 	userAuthService, serviceErr := service.NewUserAuthService(database.Db)
 	if serviceErr != nil {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/newUserAuthService", serviceErr.Error()))
 	}
 
-	// Check user exist
+	// Check if user with same email exists
 	userAuth, findError := userAuthService.FindByUsername(model.User.Email)
 	if findError != nil {
-		errorMessage := fmt.Sprintf("Error while finding user by user name : %s",
+		errorMessage := fmt.Sprintf("Error while finding user by email : %s",
 			findError.Error())
 		log.Error(errorMessage)
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/userAuthService", errorMessage))
@@ -125,6 +151,8 @@ func Signup2Handle(c *fiber.Ctx) error {
 	newUserAuth := &dto.UserAuth{
 		ObjectId:      userUUID,
 		Username:      p.email,
+		Birthdate:     p.birthdate,
+		Residency:     p.residency,
 		Password:      hashPassword,
 		AccessToken:   token,
 		EmailVerified: true,
