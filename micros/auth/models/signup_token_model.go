@@ -8,7 +8,9 @@ type SignupTokenModel struct {
 }
 
 type UserSignupTokenModel struct {
-	Fullname string `json:"fullName"`
-	Email    string `json:"email" `
-	Password string `json:"password" `
+	Fullname  string `json:"fullName"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	Birthdate string `json:"birthdate"`
+	Residency string `json:"residency"`
 }
