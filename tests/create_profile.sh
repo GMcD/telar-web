@@ -13,8 +13,9 @@ echo $ACCESS
 
 NEW_EMAIL=username=project.scapa%2B${RANDOM}%40gmail.com
 NEW_PASS=password=In%21ferno666
+RESIDENCY=residency=IE
+BIRTHDATE=birthdate=1/1/1970
 
-
-curl -H "Authorization: ${ACCESS}" -X POST -d $NEW_EMAIL -d $NEW_PASS ${FAAS_SIGNUP_URL} 
+curl -H "Authorization: ${ACCESS}" -X POST -d $NEW_EMAIL -d $NEW_PASS -d $RESIDENCY -d $BIRTHDATE ${FAAS_SIGNUP_URL} 
 
 echo

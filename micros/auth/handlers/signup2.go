@@ -42,14 +42,21 @@ func Signup2Handle(c *fiber.Ctx) error {
 	cognitoUsername := claims["cognito:username"].(string)
 	cognitoUUID, _ := uuid.FromString(cognitoUsername)
 
-	// take parameters from Request
+	// take required parameters from Request
 	p := new(User)
 	p.userid = cognitoUUID
 	p.fullname = claims["name"].(string)
 	p.email = claims["email"].(string)
-	p.birthdate = claims["birthdate"].(string)
-	p.residency = claims["residency"].(string)
 	p.password, _ = password.Generate(12, 4, 4, false, false)
+	// take optional parameters from Request
+	p.birthdate = "1/1/1970"
+	if claims["custom:birthdate"] != nil {
+		p.birthdate = claims["custom:birthdate"].(string)
+	}
+	p.residency = "GB"
+	if claims["custom:residency"] != nil {
+		p.residency = claims["custom:residency"].(string)
+	}
 
 	log.Info(fmt.Sprintf("%+v\n", p))
 
