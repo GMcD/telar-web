@@ -597,6 +597,23 @@ func saveUserProfile(model *models.UserProfileModel) error {
 	return nil
 }
 
+// saveUserProfileAsync Save User Profile Async
+func saveUserProfileAsync(model *models.UserProfileModel) <-chan ProfileResultAsync {
+	r := make(chan ProfileResultAsync)
+	go func() {
+		defer close(r)
+
+		err := saveUserProfile(model)
+		if err != nil {
+			r <- ProfileResultAsync{Error: err}
+			return
+		}
+		r <- ProfileResultAsync{Profile: model}
+
+	}()
+	return r
+}
+
 // updateUserProfile Update user profile
 func updateUserProfile(data []byte, updateType int, userInfoInReq *UserInfoInReq) error {
 	profileURL := fmt.Sprintf("/profile?updateType=%d", updateType)

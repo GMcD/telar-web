@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/GMcD/telar-web/constants"
 	"github.com/GMcD/telar-web/micros/auth/database"
@@ -12,6 +13,7 @@ import (
 	service "github.com/GMcD/telar-web/micros/auth/services"
 	"github.com/gofiber/fiber/v2"
 	uuid "github.com/gofrs/uuid"
+	jwt "github.com/golang-jwt/jwt/v4"
 	coreConfig "github.com/red-gold/telar-core/config"
 	"github.com/red-gold/telar-core/pkg/log"
 	"github.com/red-gold/telar-core/utils"
@@ -27,6 +29,23 @@ type User struct {
 	residency string    `json:"residency" xml:"residency" form:"residency" query:"residency"`
 }
 
+func UnixToTime(epoch float64) string {
+	tm := time.Unix(int64(epoch), 0)
+	return tm.Format(time.RFC822)
+}
+
+func PrintClaim(claims jwt.MapClaims) {
+	fmt.Println()
+	for key, value := range claims {
+		if key == "iat" || key == "exp" || key == "auth_time" {
+			fmt.Printf("%s : %v\n", key, UnixToTime(value.(float64)))
+		} else {
+			fmt.Printf("%s : %v\n", key, value)
+		}
+	}
+	fmt.Println()
+}
+
 func Signup2Handle(c *fiber.Ctx) error {
 	config := coreConfig.AppConfig
 
@@ -39,6 +58,8 @@ func Signup2Handle(c *fiber.Ctx) error {
 		return c.Status(http.StatusBadRequest).JSON(utils.Error("initUserSetupError", errorMessage))
 	}
 
+	PrintClaim(claims)
+
 	cognitoUsername := claims["cognito:username"].(string)
 	cognitoUUID, _ := uuid.FromString(cognitoUsername)
 
@@ -50,8 +71,8 @@ func Signup2Handle(c *fiber.Ctx) error {
 	p.password, _ = password.Generate(12, 4, 4, false, false)
 	// take optional parameters from Request
 	p.birthdate = "1/1/1970"
-	if claims["custom:birthdate"] != nil {
-		p.birthdate = claims["custom:birthdate"].(string)
+	if claims["birthdate"] != nil {
+		p.birthdate = claims["birthdate"].(string)
 	}
 	p.residency = "GB"
 	if claims["custom:residency"] != nil {
@@ -189,18 +210,21 @@ func Signup2Handle(c *fiber.Ctx) error {
 		Permission:  constants.Public,
 	}
 
-	userProfileErr := saveUserProfile(newUserProfile)
-	if userProfileErr != nil {
-		log.Error("Save user profile %s", userProfileErr.Error())
-		return c.Status(http.StatusInternalServerError).JSON(utils.Error("canNotSaveUserProfile", "Cannot save user profile!"))
+	newUserProfileChannel := saveUserProfileAsync(newUserProfile)
+	saveUserProfileResult := <-newUserProfileChannel
+	if saveUserProfileResult.Error != nil {
+		errorMessage := fmt.Sprintf("Save User Profile Error %s", saveUserProfileResult.Error.Error())
+		log.Error(errorMessage)
+		return c.Status(http.StatusInternalServerError).JSON(utils.Error("internal/saveUserProfileAsync", "Error happened while saving User Profile!"))
+	} else {
+		log.Info(fmt.Sprintf("Saved:\n%+v\n", newUserProfile))
 	}
 
+	// Should be Async, Also?
 	setupErr := initUserSetup(newUserAuth.ObjectId, newUserAuth.Username, "", newUserProfile.FullName, newUserAuth.Role)
 	if setupErr != nil {
 		return c.Status(http.StatusInternalServerError).JSON(utils.Error("initUserSetupError", fmt.Sprintf("Cannot initialize user setup! error: %s", setupErr.Error())))
 	}
-
-	// return c.SendStatus(http.StatusOK)
 
 	tokenModel := &TokenModel{
 		token:            ProviderAccessToken{},
