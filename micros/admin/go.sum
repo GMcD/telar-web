@@ -40,8 +40,8 @@ github.com/Djarvur/go-err113 v0.0.0-20200511133814-5174e21577d5/go.mod h1:4UJr5H
 github.com/GMcD/telar-core v0.1.44 h1:o7BaKU5QmxpmNU/YdDMhFwUy2Og1zAJUIeBJKWEy1YA=
 github.com/GMcD/telar-core v0.1.44/go.mod h1:uZAubEVyR4eOJL1l1fqGhRMqs1rANM5gohRO3vcpOYs=
 github.com/GMcD/telar-web v1.0.75/go.mod h1:aFtW3YOWL2I2BbgdG/ZlgnFecb4xNcd4kX5rHbfoVRw=
-github.com/GMcD/telar-web v1.0.76 h1:a3vAdVcPsEmiNYxAbWPSW9biglfRNV0V0Fc3xjOmAaM=
-github.com/GMcD/telar-web v1.0.76/go.mod h1:aFtW3YOWL2I2BbgdG/ZlgnFecb4xNcd4kX5rHbfoVRw=
+github.com/GMcD/telar-web v1.0.77 h1:x4XTpmxAWK1VsCTJOwY3cxSTSFkNsZqDdQyjlPHsk78=
+github.com/GMcD/telar-web v1.0.77/go.mod h1:aFtW3YOWL2I2BbgdG/ZlgnFecb4xNcd4kX5rHbfoVRw=
 github.com/GMcD/telar-web/micros/auth v0.0.0-20211118172142-b396ec9c64e5 h1:fimmWkqt/DTwT9m+HMubq7mPFV7Yk3hE8s73hvbNWM0=
 github.com/GMcD/telar-web/micros/auth v0.0.0-20211118172142-b396ec9c64e5/go.mod h1:7OI1s7wBmtAUSo/u6uWNopWWR102rjUC6NcLmENsRow=
 github.com/GMcD/telar-web/micros/setting v0.0.0-20211118172142-b396ec9c64e5 h1:k5UJZr6MIX8vjcpI9VfFt89wwYg8HvWuSjI3wndEeeM=
