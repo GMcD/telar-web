@@ -5,7 +5,7 @@ replace github.com/red-gold/telar-core v0.1.16 => github.com/GMcD/telar-core v0.
 go 1.16
 
 require (
-	github.com/GMcD/telar-web v1.0.77
+	github.com/GMcD/telar-web v1.0.78
 	github.com/GMcD/telar-web/micros/auth v0.0.0-20211118172142-b396ec9c64e5
 	github.com/GMcD/telar-web/micros/setting v0.0.0-20211118172142-b396ec9c64e5
 	github.com/alexellis/hmac v0.0.0-20180624211220-5c52ab81c0de
